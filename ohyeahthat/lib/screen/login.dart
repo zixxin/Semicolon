@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:get/get.dart';
+import 'package:ohyeahthat/theme/colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -8,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF88A4B8),
+      backgroundColor: primary,
       body: Center(
         child: Column(
           children: [
@@ -47,8 +49,8 @@ class LoginScreen extends StatelessWidget {
               '로그인 | 회원가입',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontFamily: 'main',
+                fontSize: 19,
               ),
               textAlign: TextAlign.center,
             ),
@@ -57,7 +59,7 @@ class LoginScreen extends StatelessWidget {
             ),
             SignInButton(
               Buttons.Google,
-              onPressed:() {},
+              onPressed:() {Get.offNamed('/home');},
             ),
             const SizedBox(
               height: 20,
@@ -66,8 +68,8 @@ class LoginScreen extends StatelessWidget {
               '한동대학교 계정(@handong.edu)으로만\n로그인 할 수 있습니다.',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontFamily: 'main',
+                fontSize: 17,
               ),
               textAlign: TextAlign.center,
             ),

@@ -32,5 +32,8 @@ flutter:
     - family: login
       fonts:
         - asset: font/Jua-Regular.ttf
+    - family: main
+      fonts:
+        - asset : font/DoHyeon-Regular.ttf
 
  
