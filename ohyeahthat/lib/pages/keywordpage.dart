@@ -48,16 +48,29 @@ class MyApp extends StatelessWidget {
                           flex : 1,
                           fit : FlexFit.tight,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              TempBox_red(),
-                              TempBox_red(),
+                              Text("내 키워드",
+                              style : TextStyle(
+                                fontSize :17,
+                                fontWeight: FontWeight.bold
+                              )),
+                              SizedBox(width : 60),
+                              ClipRRect(
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                child : RaisedButton(
+                                onPressed: () { },
+                                child : Text("비우기"),
+                                color : Colors.white,
+                                
+                              ),
+                              ),
                             ],
                           )),
                         Flexible(
                           flex : 2,
                           fit : FlexFit.tight,
-                          child: TempBox_green(),),
+                          child: Text("추가되는 항목을 여기에 표시.")),
                       ],
                     )
                   ),
@@ -71,9 +84,10 @@ class MyApp extends StatelessWidget {
                           fit : FlexFit.tight,
                           child: searchBar(),),
                         Flexible(
-                          flex : 4,
+                          flex : 5,
                           fit : FlexFit.tight,
-                          child: TempBox_yellow(),),
+                          child: _buildList(), 
+                          ),
                       ],
                     )
                   ),
@@ -89,14 +103,23 @@ class MyApp extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Icon(Icons.message),
-                          Text('전체공지'),
+                          Text('전체공지',
+                          style: TextStyle(fontSize: 10),),
+                          IconButton(
+                            icon : Icon(Icons.message),
+                            onPressed: () {  },
+                            iconSize: 20,
+                          ),
                         ],
                       ),
                       Column(
                         children: [
-                          Icon(Icons.star_border_outlined),
-                          Text('중요공지'),
+                          Text('중요공지',style: TextStyle(fontSize: 10),),
+                          IconButton(
+                            icon : Icon(Icons.star_border_outlined),
+                            onPressed: () {  },
+                            iconSize: 20,
+                          ),
                         ],
                       ),
 
@@ -162,25 +185,60 @@ class searchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+      child :Container(
         height : 50,
-        width : 500,
+        width : 300,
         decoration : BoxDecoration(
             color : Colors.black12,
-            border : Border.all()
         ),
       child :Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text("추가하고 싶은 키워드 검색"),
-          Icon(Icons.youtube_searched_for)
+          SizedBox(width : 1),
+          Text("추가하고 싶은 키워드 검색",
+          style : TextStyle(
+            fontSize: 18,
+            color : Colors.black.withOpacity(0.4))
+            ),
+          Icon(Icons.search),
+          SizedBox(width : 1),
         ],
       )
+    )
     );
   }
 }
-
+  
+Widget _buildList(){
+  return ListView.separated(
+    itemBuilder: (BuildContext _context, int index){
+      return Container(
+        child : Row(
+          children : [
+            SizedBox(width:15),
+            Text("#",
+            style: TextStyle(
+              color : Colors.blueGrey,
+              fontSize: 20),
+            ),
+            Text(index.toString(),
+            style: TextStyle(
+              color : Colors.blueGrey,
+              fontSize: 20),
+            ),
+          ]
+        ),
+       );
+    } ,
+    separatorBuilder : (BuildContext _context, int index){
+      return Container(height : 1, color: Color(0xff999999));
+    },//아이템과아이템.
+    itemCount: 25,
+    );
+}
 
 
 
