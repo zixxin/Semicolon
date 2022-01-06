@@ -1,244 +1,220 @@
 import 'package:flutter/material.dart';
+import 'package:ohyeahthat/data.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp ({ Key? key }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return MaterialApp(
-        home : Scaffold(
-            appBar: AppBar(
-                // leading :
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.arrow_back_rounded),
-                    Spacer(flex : 1),
-                    // SizedBox(width : 120),
-                    Text(//상단 바 이름 설정.
-                        '키워드 관리',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
-                        ),
-                        textAlign : TextAlign.center
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const KeyWord(),
+    );
+  }
+}
+
+class KeyWord extends StatefulWidget {
+  const KeyWord ({ Key? key }) : super(key: key);
+
+  @override
+  State<KeyWord> createState() => _KeyWordState();
+}
+
+class _KeyWordState extends State<KeyWord> {
+  List<String> inputs = [];
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      appBar: AppBar(
+      title : Text('키워드 관리'),
+            ),
+      body : Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          margin : EdgeInsets.all(3.0),
+
+          child: Column(
+            children: [
+              Header(),
+              Expanded(
+                child: Container(
+                  decoration : BoxDecoration(
+                    color : Colors.lightBlue,
+                    border : Border.all(
+                      color : Colors.blueGrey,
                     ),
-                    Spacer(flex : 1),
-                  ],
-                )
-                // actions : [Icon(Icons.backspace_rounded)] // 위 오른쪽설정.
-            ),
-            body: Container(
-              alignment : Alignment.center,
-              child : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    flex : 1,
-                    fit : FlexFit.tight,
-                    child : Column(
-                      children: [
-                        Flexible(
-                          flex : 1,
-                          fit : FlexFit.tight,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("내 키워드",
-                              style : TextStyle(
-                                fontSize :17,
-                                fontWeight: FontWeight.bold
-                              )),
-                              SizedBox(width : 60),
-                              ClipRRect(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
-                                child : RaisedButton(
-                                onPressed: () { },
-                                child : Text("비우기"),
-                                color : Colors.white,
-                                
-                              ),
-                              ),
-                            ],
-                          )),
-                        Flexible(
-                          flex : 2,
-                          fit : FlexFit.tight,
-                          child: Text("추가되는 항목을 여기에 표시.")),
-                      ],
-                    )
+                    borderRadius : BorderRadius.circular(10),
                   ),
-                  Flexible(
-                    flex : 2,
-                    fit : FlexFit.tight,
-                    child : Column(
-                      children: [
-                        Flexible(
-                          flex : 1,
-                          fit : FlexFit.tight,
-                          child: searchBar(),),
-                        Flexible(
-                          flex : 5,
-                          fit : FlexFit.tight,
-                          child: _buildList(), 
-                          ),
-                      ],
-                    )
+                  margin : EdgeInsets.all(3.0),
+                  padding : EdgeInsets.all(25.0),
+                  child: SingleChildScrollView(
+                    child :Wrap(
+                      spacing : 10,
+                      children: concerns.asMap().entries.map((entry){
+                        int idx = entry.key;
+                        return BuildChip(
+                          index : idx,
+                          label : entry.value['label'].toString(),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ],
-              )
-            ),
-
-            bottomNavigationBar: BottomAppBar(
-                child : SizedBox(
-                  height : 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Text('전체공지',
-                          style: TextStyle(fontSize: 10),),
-                          IconButton(
-                            icon : Icon(Icons.message),
-                            onPressed: () {  },
-                            iconSize: 20,
-                          ),
-                        ],
+                ),
+              ),
+              MyKeyword(),
+              if(inputs.length > 0)
+                  Expanded(
+                    child: Container(
+                      margin : EdgeInsets.all(3.0),
+                      padding : EdgeInsets.all(25.0),
+                      decoration : BoxDecoration(
+                        color : Colors.blueGrey,
+                        border : Border.all(
+                          color : Colors.lightBlue,
+                        ),
+                        borderRadius : BorderRadius.circular(10),
                       ),
-                      Column(
-                        children: [
-                          Text('중요공지',style: TextStyle(fontSize: 10),),
-                          IconButton(
-                            icon : Icon(Icons.star_border_outlined),
-                            onPressed: () {  },
-                            iconSize: 20,
-                          ),
-                        ],
+                      child: SingleChildScrollView(
+                        child :Wrap(
+                          spacing : 10,
+                          children: inputs.asMap().entries.map((entry){
+                            int idx = entry.key;
+                            return BuildSelectedChip(
+                              index: idx,
+                              label: entry.value,
+                            );
+                          }).toList(),
+                        ),
                       ),
-
-                    ],
+                    ),
                   ),
-                )
-            )
-        )
-    );
-  }
-}
-
-class TempBox_yellow extends StatelessWidget {
-  const TempBox_yellow ({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height : 50,
-      width : 500,
-      decoration : BoxDecoration(
-        color : Colors.yellowAccent,
-        border : Border.all()
+            ],
+          ),
+        ),
       )
     );
   }
+
+Widget BuildChip({required int index, required String label}){
+  return InputChip(
+              label : Text(label,
+                style: TextStyle(
+                  color : Colors.black,
+                ),
+              ),
+              avatar: CircleAvatar(
+                child : Text(label[0].toUpperCase()),
+                backgroundColor: Colors.white
+                ),
+              backgroundColor: Colors.blueGrey,
+              selected: inputs.contains(label),
+                onSelected: (bool selected) {
+                  setState(() {
+                    if (selected) {
+                      inputs.add(label);
+                    } else {
+                      inputs.removeWhere((value) {
+                        return value == label;
+                      });
+                    }
+                  });
+                },
+              );
 }
 
-class TempBox_green extends StatelessWidget {
-  const TempBox_green ({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height : 50,
-        width : 500,
-        decoration : BoxDecoration(
-            color : Colors.greenAccent,
-            border : Border.all()
-        )
-    );
+Widget BuildSelectedChip({required int index, required String label,}){
+  return Chip(
+              label : Text(label,
+                style: TextStyle(
+                  color : Colors.black,
+              ),
+            ),
+              avatar: CircleAvatar(
+                child : Text(
+                  label[0].toUpperCase()
+                ),
+                backgroundColor: Colors.white
+                ),
+              backgroundColor : Colors.lightBlue,
+              onDeleted:() {
+                  setState(() {
+                      inputs.removeWhere((value) {
+                        return value == label;
+                      });
+                  });
+                },
+              );
   }
-}
 
-class TempBox_red extends StatelessWidget {
-  const TempBox_red ({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+Widget MyKeyword() {
     return Container(
-        height : 50,
-        width : 50,
-        decoration : BoxDecoration(
-            color : Colors.redAccent,
-            border : Border.all()
-        )
-    );
-  }
-}
-
-class searchBar extends StatelessWidget {
-  const searchBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
-      child :Container(
-        height : 50,
-        width : 300,
-        decoration : BoxDecoration(
-            color : Colors.black12,
-        ),
-      child :Row(
+      margin : EdgeInsets.all(5),
+      child : Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(width : 1),
-          Text("추가하고 싶은 키워드 검색",
-          style : TextStyle(
-            fontSize: 18,
-            color : Colors.black.withOpacity(0.4))
+        children :[          
+          Text("내 키워드",
+            style : TextStyle(
+            fontSize :17,
+            fontWeight: FontWeight.bold
+            )
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            child : RaisedButton(
+            onPressed: () { 
+              return inputs.clear();
+            },
+            child : Text("비우기"),
+            color : Colors.white, 
             ),
-          Icon(Icons.search),
-          SizedBox(width : 1),
-        ],
-      )
-    )
+          ),
+        ]
+      ),
     );
-  }
 }
-  
-Widget _buildList(){
-  return ListView.separated(
-    itemBuilder: (BuildContext _context, int index){
-      return Container(
-        child : Row(
-          children : [
-            SizedBox(width:15),
-            Text("#",
-            style: TextStyle(
-              color : Colors.blueGrey,
-              fontSize: 20),
+
+Widget Header() {
+    return Container(
+      child : Flexible(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: TextField(
+                decoration : InputDecoration(
+                  border : OutlineInputBorder(),
+                 labelText : '키워드 검색'
+                ),
+              ),
             ),
-            Text(index.toString(),
-            style: TextStyle(
-              color : Colors.blueGrey,
-              fontSize: 20),
-            ),
-          ]
+            Flexible(
+              child: IconButton(
+                onPressed: (){
+            
+                },
+                icon: Icon(Icons.search),),
+            )
+            
+          ],
         ),
-       );
-    } ,
-    separatorBuilder : (BuildContext _context, int index){
-      return Container(height : 1, color: Color(0xff999999));
-    },//아이템과아이템.
-    itemCount: 25,
-    );
+      )
+  );
 }
+}
+
+
+
 
 
 
