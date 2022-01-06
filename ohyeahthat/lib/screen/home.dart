@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
@@ -14,6 +12,7 @@ class HomeScreen extends StatefulWidget{
 class _HomeScreen extends State<HomeScreen> {
   bool isNotif = true;
   bool isLogin = true;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +111,25 @@ class _HomeScreen extends State<HomeScreen> {
             ),
           ],
         )
-      )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(0xFFEFEFEF),
+        selectedLabelStyle: const TextStyle(fontFamily: 'main', fontSize: 15),
+        selectedItemColor: const Color(0xFF88A4B8),
+        unselectedLabelStyle: const TextStyle(fontFamily: 'main', fontSize: 15),
+        unselectedItemColor: const Color(0xFFAAA4A4),
+        items: const <BottomNavigationBarItem> [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_outlined),
+            label: ('전체 공지')
+          ),
+          BottomNavigationBarItem (
+            icon: Icon(Icons.star_outlined),
+            label: ('중요 공지'),
+          ),
+        ]
+      ),
     );
   }
 }
