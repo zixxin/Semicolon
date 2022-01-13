@@ -39,7 +39,7 @@ class _KeyWordState extends State<KeyWord> {
     return Scaffold(
       appBar: AppBar(
         title : const Text(
-          '키워드 관리',
+          '키워드관리',
           style: TextStyle(
             fontFamily: 'main',
             fontSize: 20,
