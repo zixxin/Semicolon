@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:ohyeahthat/pages/keywordpage.dart';
 import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/home.dart';
 import 'binding/init_binding.dart';
@@ -35,6 +36,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/home',
             page: () => const HomeScreen(),
+          ),
+          GetPage(
+            name: '/keyword',
+            page: () => const KeyWord(),
           )
         ]
       ),

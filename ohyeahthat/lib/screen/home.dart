@@ -13,11 +13,11 @@ class HomeScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "아맞다",
-          style: TextStyle(
+        title: Text(
+          _appBarTitle(controller.currentIndex.value),
+          style: const TextStyle(
             fontFamily: 'main',
-            fontSize: 22,
+            fontSize: 20,
           ),
         ),
         backgroundColor: primary,
@@ -52,5 +52,17 @@ class HomeScreen extends GetView<HomeController> {
         ]
       )
     )));
+  }
+
+  String _appBarTitle(int index) {
+    if (index == 0) {
+      return "전체 공지";
+    }
+    else if (index == 1) {
+      return "중요 공지";
+    }
+    else {
+      return "설정";
+    }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ohyeahthat/data.dart';
+import 'package:ohyeahthat/theme/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,8 +38,19 @@ class _KeyWordState extends State<KeyWord> {
     
     return Scaffold(
       appBar: AppBar(
-      title : Text('키워드 관리'),
-            ),
+        title : const Text(
+          '키워드 관리',
+          style: TextStyle(
+            fontFamily: 'main',
+            fontSize: 20,
+          )
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          onPressed: (){Get.offNamed('/home');},
+        ),
+        backgroundColor: primary,
+      ),
       body : Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
