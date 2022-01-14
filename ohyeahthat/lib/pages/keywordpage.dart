@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ohyeahthat/data.dart';
+import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
 void main() {
@@ -39,7 +39,7 @@ class _KeyWordState extends State<KeyWord> {
     return Scaffold(
       appBar: AppBar(
         title : const Text(
-          '키워드 관리',
+          '키워드관리',
           style: TextStyle(
             fontFamily: 'main',
             fontSize: 20,
