@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ohyeahthat/data.dart';
+import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
 void main() {
