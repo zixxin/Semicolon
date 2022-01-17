@@ -6,9 +6,9 @@ from firebase_admin import firestore
 
  
 # Firebase database 인증 및 앱 초기화
-cred = credentials.Certificate("pleasedothat-f843e-firebase-adminsdk-fut4j-e7d1463897.json")
+cred = credentials.Certificate("(개인정보)")
 firebase_admin.initialize_app(cred, {
-    'databaseURL' : 'https://pleasedothat-f843e-default-rtdb.firebaseio.com/'
+    'databaseURL' : '(개인정보)'
 })
 # ref = db.reference() # 기본 위치 지정 realtime firebase
 db = firestore.client() # firestore firebase settings
