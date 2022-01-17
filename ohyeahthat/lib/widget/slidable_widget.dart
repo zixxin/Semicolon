@@ -1,35 +1,51 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:ohyeahthat/data/model.dart';
 
 enum SlidableAction { archive, share, more, delete }
 
-class SlidableWidget extends StatelessWidget {
+class SlidableWidget extends StatefulWidget {
   final Widget child;
   final Function(SlidableAction action) onDismissed;
+  final Content selected_item;
+  int count;
 
 
-  const SlidableWidget({
+  SlidableWidget({
     required this.child,
     required this.onDismissed,
+    required this.selected_item,
+    required this.count,
     Key ? key,
   }) : super(key: key);
 
+  @override
+  State<SlidableWidget> createState() => _SlidableWidgetState();
+}
 
-
-
+class _SlidableWidgetState extends State<SlidableWidget> {
   @override
   Widget build(BuildContext context) => Slidable(
         actionPane: SlidableDrawerActionPane(),
-        child: child,
+        child: widget.child,
 
         /// left side
         actions: <Widget>[
           IconSlideAction(
-            caption: 'Important',
+            caption: '중요',
             color: Colors.orange,
             icon: Icons.star_border_outlined,
-            onTap: () => onDismissed(SlidableAction.archive),
+            onTap: () {
+              setState(() {
+                widget.selected_item.imp = true;
+              });
+                if(widget.selected_item.imp == true){
+                  print('전체공지위젯확인 : ');
+                  print(widget.count);
+                }
+              widget.onDismissed(SlidableAction.archive);
+            }
           ),
           // IconSlideAction(
           //   caption: 'Share',
@@ -51,7 +67,7 @@ class SlidableWidget extends StatelessWidget {
             caption: 'Delete',
             color: Colors.red,
             icon: Icons.delete,
-            onTap: () => onDismissed(SlidableAction.delete),
+            onTap: () => widget.onDismissed(SlidableAction.delete),
           ),
         ],
       );

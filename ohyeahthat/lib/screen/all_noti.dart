@@ -11,8 +11,9 @@ class AllNotiScreen extends StatefulWidget{
   _AllNotiScreen createState() => _AllNotiScreen();
 } 
 class _AllNotiScreen extends State<AllNotiScreen> {
-
   List<Content> item = List.of(Data.contents);
+  int imp_count = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +32,8 @@ class _AllNotiScreen extends State<AllNotiScreen> {
               child : buildListTile(items),
               onDismissed:(action) =>
                 dismissSlidableItem(context,index,action),
+              selected_item: items,
+              count : imp_count,
             );
           }
         ),
@@ -55,7 +58,10 @@ void dismissSlidableItem(BuildContext context, int index, action) {
     }
 }
 
-Widget buildListTile(Content item) => ListTile(
+Widget buildListTile(Content item){
+  print('전체빌드타일 : ');
+  print(imp_count);
+  return  ListTile(
   contentPadding: const EdgeInsets.symmetric(
     horizontal: 16,
     vertical: 16,
@@ -94,6 +100,7 @@ Widget buildListTile(Content item) => ListTile(
     ),
     onTap: () {},
   );
+  }
 }
 
   
