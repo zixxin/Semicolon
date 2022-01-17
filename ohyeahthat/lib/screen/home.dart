@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ohyeahthat/controller/home_controller.dart';
 import 'package:ohyeahthat/screen/all_noti.dart';
-import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:ohyeahthat/screen/settings.dart';
 import 'package:ohyeahthat/theme/colors.dart';
@@ -12,7 +11,6 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    //FirebaseAuth.instance.authStateChanges(); 로그인 기능 구현 진행 중..
     return Obx(() => Scaffold(
       appBar: AppBar(
         title: Text(
@@ -24,24 +22,6 @@ class HomeScreen extends GetView<HomeController> {
         ),
         backgroundColor: primary,
       ),
-      //로그인 기능 구현 진행중..
-      /*body: StreamBuilder(
-        builder: (BuildContext context, AsyncSnapshot<User> snapshot){
-          if (!snapshot.hasData) {
-            return const LoginScreen();
-          }
-          else {
-            return IndexedStack(
-              index: controller.currentIndex.value,
-              children: const[
-                AllNotiScreen(),
-                PinnedScreen(),
-                SettingScreen()
-              ]
-            ); 
-          }
-        }
-      ),*/
       body: IndexedStack(
         index: controller.currentIndex.value,
         children: const[
