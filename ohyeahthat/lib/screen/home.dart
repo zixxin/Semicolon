@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ohyeahthat/controller/home_controller.dart';
 import 'package:ohyeahthat/screen/all_noti.dart';
+import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:ohyeahthat/screen/settings.dart';
 import 'package:ohyeahthat/theme/colors.dart';
@@ -11,7 +13,14 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return StreamBuilder (
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+        if (!snapshot.hasData) {
+          return const LoginScreen();
+        }
+        else{
+          return Obx(() => Scaffold(
         appBar: AppBar(
           title: Text(
             _appBarTitle(controller.currentIndex.value),
@@ -43,8 +52,10 @@ class HomeScreen extends GetView<HomeController> {
                   BottomNavigationBarItem(
                       icon: Icon(Icons.settings_outlined), label: "설정"),
                 ]))));
+        }
+      }
+    );
   }
-
   String _appBarTitle(int index) {
     if (index == 0) {
       return "전체 공지";
