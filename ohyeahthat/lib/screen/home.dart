@@ -7,7 +7,11 @@ import 'package:ohyeahthat/screen/settings.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
 class HomeScreen extends GetView<HomeController> {
-  const HomeScreen({Key? key}) : super(key: key);
+
+  const HomeScreen({
+    Key? key
+    }) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +24,18 @@ class HomeScreen extends GetView<HomeController> {
               fontSize: 20,
             ),
           ),
+          actions : <Widget>[
+            IconButton(
+              icon : const Icon(Icons.push_pin),
+              onPressed: (){
+                Get.to(const PinnedScreen());
+              })
+          ],
           backgroundColor: primary,
         ),
         body: IndexedStack(
             index: controller.currentIndex.value,
-            children: const [AllNotiScreen(), PinnedScreen(), SettingScreen()]),
+            children: [AllNotiScreen(), const PinnedScreen(),const SettingScreen()]),
         bottomNavigationBar: Obx(() => BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 currentIndex: controller.currentIndex.value,
