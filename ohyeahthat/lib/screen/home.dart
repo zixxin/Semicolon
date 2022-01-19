@@ -14,7 +14,7 @@ class HomeScreen extends GetView<HomeController> {
   
   @override
   Widget build(BuildContext context) {
-    
+
     FirebaseAuth auth = FirebaseAuth.instance;
 
     return StreamBuilder (
