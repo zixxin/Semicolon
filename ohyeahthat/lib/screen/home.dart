@@ -6,6 +6,7 @@ import 'package:ohyeahthat/controller/home_controller.dart';
 import 'package:ohyeahthat/screen/all_noti.dart';
 import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/login_error.dart';
+import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:ohyeahthat/screen/settings.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
@@ -39,6 +40,14 @@ class HomeScreen extends GetView<HomeController> {
                     fontSize: 20,
                   ),
                 ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: const Icon(Icons.push_pin),
+                    onPressed: (){
+                      Get.to(const PinnedScreen());
+                    }
+                  )
+                ],
                 backgroundColor: primary,
               ),
               body: IndexedStack(
