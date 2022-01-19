@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
@@ -22,7 +20,6 @@ class LoginScreen extends StatelessWidget {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -89,7 +86,7 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'main',
-                fontSize: 17,
+                fontSize: 19,
               ),
               textAlign: TextAlign.center,
             ),
