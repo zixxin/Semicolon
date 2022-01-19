@@ -4,15 +4,17 @@ import 'package:ohyeahthat/data/model.dart';
 import 'package:ohyeahthat/widget/slidable_widget.dart';
 import 'package:ohyeahthat/widget/utils.dart';
 
-class AllNotiScreen extends StatefulWidget{
-  const AllNotiScreen({Key? key}) : super(key: key);
+class AllNotiScreen extends StatefulWidget{ 
+  AllNotiScreen({
+    Key? key,
+    }) : super(key: key);
 
   @override
   _AllNotiScreen createState() => _AllNotiScreen();
 } 
 class _AllNotiScreen extends State<AllNotiScreen> {
-
   List<Content> item = List.of(Data.contents);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +33,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
               child : buildListTile(items),
               onDismissed:(action) =>
                 dismissSlidableItem(context,index,action),
+              selected_item: items,
             );
           }
         ),
@@ -42,9 +45,9 @@ class _AllNotiScreen extends State<AllNotiScreen> {
 
 
 void dismissSlidableItem(BuildContext context, int index, action) {
-  setState((){
-    item.removeAt(index);
-  });
+  // setState((){
+  //   item.removeAt(index);
+  // });
   switch (action) {
     case SlidableAction.archive:
       Utils.showSnackBar(context, '중요공지에 저장되었습니다.');
@@ -55,15 +58,12 @@ void dismissSlidableItem(BuildContext context, int index, action) {
     }
 }
 
-Widget buildListTile(Content item) => ListTile(
+Widget buildListTile(Content item){
+  return  ListTile(
   contentPadding: const EdgeInsets.symmetric(
     horizontal: 16,
     vertical: 16,
   ),
-  // leading: CircleAvatar(
-  //   radius: 28,
-  //   backgroundImage: NetworkImage(item.urlAvatar),
-  // ),
   title : Row(
     children: [
       Chip(
@@ -94,6 +94,7 @@ Widget buildListTile(Content item) => ListTile(
     ),
     onTap: () {},
   );
+  }
 }
 
   
