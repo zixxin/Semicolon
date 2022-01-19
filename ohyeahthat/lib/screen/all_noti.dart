@@ -5,7 +5,7 @@ import 'package:ohyeahthat/widget/slidable_widget.dart';
 import 'package:ohyeahthat/widget/utils.dart';
 
 class AllNotiScreen extends StatefulWidget{ 
-  AllNotiScreen({
+  const AllNotiScreen({
     Key? key,
     }) : super(key: key);
 

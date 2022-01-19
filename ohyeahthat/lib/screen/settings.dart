@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,9 @@ class SettingScreen extends StatefulWidget{
 } 
 class _SettingScreen extends State<SettingScreen>{
   bool _alarmOn = true;
+
+  final _username = FirebaseAuth.instance.currentUser?.displayName;
+  final _useremail = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +35,8 @@ class _SettingScreen extends State<SettingScreen>{
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children:  [
+                      const Text(
                         '내 정보',
                         textAlign: TextAlign.start,
                         style: TextStyle(
@@ -41,20 +45,20 @@ class _SettingScreen extends State<SettingScreen>{
                           color: Color(0xFFA9A9A9)
                         )
                       ),
-                      SizedBox(height: 7),
-                      Text(
-                        '김한동 학부생',
+                      const SizedBox(height: 7),
+                      Text(  
+                        _username as String,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'main',
                           fontSize: 25,
                           color: Color(0xFF2E2E2E),
                         ),
                       ),
                       Text(
-                        '22000000@handong.ac.kr',
+                        _useremail as String,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'main',
                           fontSize: 17,
                           color: Color(0xFF6E6E6E),
@@ -120,16 +124,17 @@ class _SettingScreen extends State<SettingScreen>{
                 ),
               ),
               const Divider(thickness: 1),
-              ListTile(
-                title: const Text(
+              TextButton(
+                child: const Text(
                   "로그아웃",
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontFamily: 'main',
                     fontSize: 20,
-                    color: Color(0xFFD72626)
+                    color: Color(0xFFD72626), 
                   )
                 ),
-                onTap: () {Get.offNamed('/login');},
+                onPressed: FirebaseAuth.instance.signOut,
               ),
               const Divider(thickness: 1),
             ]
@@ -137,5 +142,5 @@ class _SettingScreen extends State<SettingScreen>{
         )
       )
     );
-  }
+  }   
 }
