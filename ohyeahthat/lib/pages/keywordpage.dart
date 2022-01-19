@@ -3,26 +3,6 @@ import 'package:get/get.dart';
 import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const KeyWord(),
-    );
-  }
-}
-
 class KeyWord extends StatefulWidget {
   const KeyWord({Key? key}) : super(key: key);
 
@@ -176,7 +156,10 @@ class _KeyWordState extends State<KeyWord> {
           // ignore: deprecated_member_use
           child: RaisedButton(
             onPressed: () {
-              return inputs.clear();
+              return 
+              setState(() {
+                inputs.clear();
+              });
             },
             child: Text("비우기"),
             color: Colors.white,

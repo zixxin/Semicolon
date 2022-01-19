@@ -13,35 +13,45 @@ class PinnedScreen extends StatefulWidget{
 
 class _PinnedScreenState extends State<PinnedScreen> {
   List<Content> item = List.of(Data.contents);
-  int imp_count = 3;
-
   
+  List<Content> Make_ImpList(){
+    List<Content> list = [];
+    for(int i=0; i<item.length; i++){
+      if(item[i].imp == true){
+        list.add(item[i]);
+      }
+    }
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<Content> imp_list = Make_ImpList();
+    
+    // 출력test
+    // for(int i=0; i<imp_list.length; i++){
+    //   print(imp_list[i]);
+    // }
     return Scaffold(
+      appBar : AppBar(
+        title : const Text("중요공지"),
+      ),
       body: SafeArea(
         child: Center(
           child: ListView.separated(
-          itemCount: imp_count,
+          itemCount: imp_list.length,
           separatorBuilder: (context, index){
-            return const Divider(
-              thickness: 5,
-            );
+              return const Divider(
+                thickness: 5,
+              );
           },
           itemBuilder: (context,index) {
-            final items = item[index];
-            // for(int i=0; i<item.length;i++){
-            //   if(items.imp == true)
-            //     imp_item!.add(items);
-            // }
-            // final imp_items = imp_item![index];
+            final items = imp_list[index];
             return Slidable_Imp_Widget(
               child: buildListTile(items),
               onDismissed:(action) =>
                 dismissSlidableItem(context,index,action),
               selected_item: items,
-              count : imp_count,
             );
           }
         ),
@@ -51,20 +61,21 @@ class _PinnedScreenState extends State<PinnedScreen> {
 }
 
 void dismissSlidableItem(BuildContext context, int index, action) {
+  List<Content> imp_list = Make_ImpList();//비효율적인 같은 리스트 생성.
   setState((){
-    item.removeAt(index);
+    imp_list.removeAt(index);
   });
   switch (action) {
     case SlidableAction.archive:
       Utils.showSnackBar(context, '중요공지에 저장되었습니다.');
       break;
+    case SlidableAction.delete:
+      Utils.showSnackBar(context, '중요목록 해제되었습니다.');
+      break; 
     }
 }
 
 Widget buildListTile(Content item){
-  print('중요빌드타일 : ');
-  print(imp_count);
-  if(item.imp == true){
     return ListTile(
     contentPadding: const EdgeInsets.symmetric(
       horizontal: 16,
@@ -100,9 +111,6 @@ Widget buildListTile(Content item){
       ),
       onTap: () {},
     );
-  }
-  else{
-    return ListTile();//true가 아니면 아무것도 보내지 마라 제발 아무것도 보내지마
-  }
+    
 }
 }
