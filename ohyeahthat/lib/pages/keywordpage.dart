@@ -36,7 +36,7 @@ class _KeyWordState extends State<KeyWord> {
             margin: const EdgeInsets.all(3.0),
             child: Column(
               children: [
-                Header(),
+                header(),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -53,7 +53,7 @@ class _KeyWordState extends State<KeyWord> {
                         spacing: 10,
                         children: concerns.asMap().entries.map((entry) {
                           int idx = entry.key;
-                          return BuildChip(
+                          return buildChip(
                             index: idx,
                             label: entry.value['label'].toString(),
                           );
@@ -62,7 +62,7 @@ class _KeyWordState extends State<KeyWord> {
                     ),
                   ),
                 ),
-                MyKeyword(),
+                myKeyword(),
                 if (inputs.length > 0)
                   Expanded(
                     child: Container(
@@ -80,7 +80,7 @@ class _KeyWordState extends State<KeyWord> {
                           spacing: 10,
                           children: inputs.asMap().entries.map((entry) {
                             int idx = entry.key;
-                            return BuildSelectedChip(
+                            return buildSelectedChip(
                               index: idx,
                               label: entry.value,
                             );
@@ -95,7 +95,7 @@ class _KeyWordState extends State<KeyWord> {
         ));
   }
 
-  Widget BuildChip({required int index, required String label}) {
+  Widget buildChip({required int index, required String label}) {
     return InputChip(
       label: Text(
         label,
@@ -121,7 +121,7 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget BuildSelectedChip({
+  Widget buildSelectedChip({
     required int index,
     required String label,
   }) {
@@ -145,7 +145,7 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget MyKeyword() {
+  Widget myKeyword() {
     return Container(
       margin: const EdgeInsets.all(5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -168,7 +168,7 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget Header() {
+  Widget header() {
     return Container(
         child: Flexible(
       child: Row(
