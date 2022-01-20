@@ -33,7 +33,7 @@ class _KeyWordState extends State<KeyWord> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            margin: EdgeInsets.all(3.0),
+            margin: const EdgeInsets.all(3.0),
             child: Column(
               children: [
                 Header(),
@@ -46,8 +46,8 @@ class _KeyWordState extends State<KeyWord> {
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.all(3.0),
-                    padding: EdgeInsets.all(25.0),
+                    margin: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: SingleChildScrollView(
                       child: Wrap(
                         spacing: 10,
@@ -66,8 +66,8 @@ class _KeyWordState extends State<KeyWord> {
                 if (inputs.length > 0)
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.all(3.0),
-                      padding: EdgeInsets.all(25.0),
+                      margin: const EdgeInsets.all(3.0),
+                      padding: const EdgeInsets.all(25.0),
                       decoration: BoxDecoration(
                         color: Colors.blueGrey,
                         border: Border.all(
@@ -99,7 +99,7 @@ class _KeyWordState extends State<KeyWord> {
     return InputChip(
       label: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
         ),
       ),
@@ -128,7 +128,7 @@ class _KeyWordState extends State<KeyWord> {
     return Chip(
       label: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
         ),
       ),
@@ -147,21 +147,20 @@ class _KeyWordState extends State<KeyWord> {
 
   Widget MyKeyword() {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text("내 키워드",
+        const Text("내 키워드",
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
         ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           // ignore: deprecated_member_use
           child: RaisedButton(
             onPressed: () {
-              return 
-              setState(() {
+              return setState(() {
                 inputs.clear();
               });
             },
-            child: Text("비우기"),
+            child: const Text("비우기"),
             color: Colors.white,
           ),
         ),
@@ -176,7 +175,7 @@ class _KeyWordState extends State<KeyWord> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(
+          const Flexible(
             child: TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(), labelText: '키워드 검색'),
@@ -185,7 +184,7 @@ class _KeyWordState extends State<KeyWord> {
           Flexible(
             child: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
           )
         ],
