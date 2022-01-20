@@ -36,27 +36,7 @@ class _KeyWordState extends State<KeyWord> {
             margin: const EdgeInsets.all(3.0),
             child: Column(
               children: [
-<<<<<<< HEAD
-                Header(),
-                Padding(
-                  padding: const EdgeInsets.only(left : 5.0),
-                  child: Row(
-                    children: [
-                      Text('Keywords',
-                      style : TextStyle(
-                        fontFamily: 'main',
-                        color : Colors.grey,
-                        fontSize: 17, 
-                      )),
-                    ]
-                  ),
-                ),
-                Divider(
-                  thickness: 0.5,
-                ),
-=======
                 header(),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -68,13 +48,8 @@ class _KeyWordState extends State<KeyWord> {
                       // ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-<<<<<<< HEAD
-                    margin: EdgeInsets.all(1.0),
-                    padding: EdgeInsets.all(5.0),
-=======
                     margin: const EdgeInsets.all(3.0),
                     padding: const EdgeInsets.all(25.0),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
                     child: SingleChildScrollView(
                       child: Wrap(
                         spacing: 5,
@@ -89,22 +64,10 @@ class _KeyWordState extends State<KeyWord> {
                     ),
                   ),
                 ),
-<<<<<<< HEAD
-                MyKeyword(),
-                Divider(
-                  thickness: 0.5,
-                ),
-                if (inputs.length > 0)
-                  Expanded(
-                    child: Container(
-=======
                 myKeyword(),
                 if (inputs.length > 0)
                   Expanded(
                     child: Container(
-                      margin: const EdgeInsets.all(3.0),
-                      padding: const EdgeInsets.all(25.0),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
                       decoration: BoxDecoration(
                         color: primary,
                         // Colors.lightBlue,
@@ -140,14 +103,8 @@ class _KeyWordState extends State<KeyWord> {
     return InputChip(
       label: Text(
         label,
-<<<<<<< HEAD
-        style: TextStyle(
-          color: Colors.white70,
-          fontFamily: 'main'
-=======
         style: const TextStyle(
           color: Colors.black,
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
         ),
       ),
       avatar: CircleAvatar(
@@ -183,14 +140,8 @@ class _KeyWordState extends State<KeyWord> {
     return Chip(
       label: Text(
         label,
-<<<<<<< HEAD
-        style: TextStyle(
-          color: Colors.black54,
-          fontFamily: 'main'
-=======
         style: const TextStyle(
           color: Colors.black,
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
         ),
       ),
       avatar: CircleAvatar(
@@ -212,18 +163,8 @@ class _KeyWordState extends State<KeyWord> {
     return Container(
       margin: const EdgeInsets.all(5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-<<<<<<< HEAD
-        Text("My Keywords",
-            style: TextStyle(
-              fontSize: 17,
-              // fontWeight: FontWeight.bold
-              fontFamily: 'main',
-              color : Colors.grey,
-              )),
-=======
         const Text("내 키워드",
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
         ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           // ignore: deprecated_member_use
@@ -233,16 +174,7 @@ class _KeyWordState extends State<KeyWord> {
                 inputs.clear();
               });
             },
-<<<<<<< HEAD
-            child: Text("비우기",
-              style : TextStyle(
-                color: Colors.grey,
-                fontFamily: 'main'
-              ),
-              ),
-=======
             child: const Text("비우기"),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
             color: Colors.white,
           ),
         ),

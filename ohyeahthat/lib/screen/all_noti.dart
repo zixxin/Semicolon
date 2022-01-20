@@ -41,20 +41,6 @@ class _AllNotiScreen extends State<AllNotiScreen> {
     )));
   }
 
-<<<<<<< HEAD
-void dismissSlidableItem(BuildContext context, int index, action) {
-  
-  switch (action) {
-    case SlidableAction.archive:
-      Utils.showSnackBar(context, '중요공지에 저장되었습니다.');
-      break;
-    case SlidableAction.delete:
-      setState((){
-        item.removeAt(index);
-      });
-      Utils.showSnackBar(context, '삭제되었습니다.');
-      break;
-=======
   void dismissSlidableItem(BuildContext context, int index, action) {
     // setState((){
     //   item.removeAt(index);
@@ -66,7 +52,6 @@ void dismissSlidableItem(BuildContext context, int index, action) {
       case SlidableAction.delete:
         Utils.showSnackBar(context, '삭제되었습니다.');
         break;
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
     }
   }
 

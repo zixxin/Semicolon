@@ -34,38 +34,8 @@ class _PinnedScreenState extends State<PinnedScreen> {
     //   print(impList[i]);
     // }
     return Scaffold(
-<<<<<<< HEAD
-      appBar : AppBar(
-        title : const Text("중요공지",
-          style: const TextStyle(
-                      fontFamily: 'main',
-                      fontSize: 20,
-                    ),
-        ),
-        backgroundColor: primary,
-      ),
-      body: SafeArea(
-        child: Center(
-          child: ListView.separated(
-          itemCount: imp_list.length,
-          separatorBuilder: (context, index){
-              return const Divider(
-                thickness: 5,
-              );
-          },
-          itemBuilder: (context,index) {
-            final items = imp_list[index];
-            return Slidable_Imp_Widget(
-              child: buildListTile(items),
-              onDismissed:(action) =>
-                dismissSlidableItem(context,index,action),
-              selected_item: items,
-            );
-          }
-=======
         appBar: AppBar(
           title: const Text("중요공지"),
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
         ),
         body: SafeArea(
             child: Center(

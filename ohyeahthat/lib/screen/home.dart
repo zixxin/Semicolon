@@ -47,39 +47,6 @@ class HomeScreen extends GetView<HomeController> {
                     ],
                     backgroundColor: primary,
                   ),
-<<<<<<< HEAD
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.push_pin),
-                    onPressed: (){
-                      Get.to(const PinnedScreen());
-                    }
-                  )
-                ],
-                backgroundColor: primary,
-              ),
-              body: IndexedStack(
-                  index: controller.currentIndex.value,
-                  children: [AllNotiScreen(), SettingScreen()]),
-              bottomNavigationBar: Obx(() => BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: controller.currentIndex.value,
-                showSelectedLabels: true, 
-                selectedItemColor: Colors.black,
-                onTap: controller.changePageIndex,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.list_outlined),
-                    label: "전체 공지",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings_outlined), label: "설정"),
-                  ]
-                )
-              )
-            ));
-=======
                   body: IndexedStack(
                       index: controller.currentIndex.value,
                       children: const [
@@ -103,7 +70,6 @@ class HomeScreen extends GetView<HomeController> {
                                 label: "설정"),
                           ]))));
             }
->>>>>>> 919bf4c4ff9d96c97fedf2be8412a40ff71184dd
           }
         });
   }
