@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/data/model.dart';
+import 'package:ohyeahthat/theme/colors.dart';
 import 'package:ohyeahthat/widget/slidable_pinned.dart';
 import 'package:ohyeahthat/widget/utils.dart';
 
@@ -34,7 +35,13 @@ class _PinnedScreenState extends State<PinnedScreen> {
     // }
     return Scaffold(
       appBar : AppBar(
-        title : const Text("중요공지"),
+        title : const Text("중요공지",
+          style: const TextStyle(
+                      fontFamily: 'main',
+                      fontSize: 20,
+                    ),
+        ),
+        backgroundColor: primary,
       ),
       body: SafeArea(
         child: Center(

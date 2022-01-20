@@ -52,11 +52,11 @@ class HomeScreen extends GetView<HomeController> {
               ),
               body: IndexedStack(
                   index: controller.currentIndex.value,
-                  children: const [AllNotiScreen(), SettingScreen()]),
+                  children: [AllNotiScreen(), SettingScreen()]),
               bottomNavigationBar: Obx(() => BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 currentIndex: controller.currentIndex.value,
-                showSelectedLabels: true,
+                showSelectedLabels: true, 
                 selectedItemColor: Colors.black,
                 onTap: controller.changePageIndex,
                 items: const [

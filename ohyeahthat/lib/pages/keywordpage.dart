@@ -37,20 +37,38 @@ class _KeyWordState extends State<KeyWord> {
             child: Column(
               children: [
                 Header(),
+                Padding(
+                  padding: const EdgeInsets.only(left : 5.0),
+                  child: Row(
+                    children: [
+                      Text('Keywords',
+                      style : TextStyle(
+                        fontFamily: 'main',
+                        color : Colors.grey,
+                        fontSize: 17, 
+                      )),
+                    ]
+                  ),
+                ),
+                Divider(
+                  thickness: 0.5,
+                ),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      border: Border.all(
-                        color: Colors.blueGrey,
-                      ),
+                      color: null,
+                        // Colors.lightBlue,
+                      border: null, 
+                      //   Border.all(
+                      //     color: Colors.blueGrey,
+                      // ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.all(3.0),
-                    padding: EdgeInsets.all(25.0),
+                    margin: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.all(5.0),
                     child: SingleChildScrollView(
                       child: Wrap(
-                        spacing: 10,
+                        spacing: 5,
                         children: concerns.asMap().entries.map((entry) {
                           int idx = entry.key;
                           return BuildChip(
@@ -63,21 +81,26 @@ class _KeyWordState extends State<KeyWord> {
                   ),
                 ),
                 MyKeyword(),
+                Divider(
+                  thickness: 0.5,
+                ),
                 if (inputs.length > 0)
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.all(3.0),
-                      padding: EdgeInsets.all(25.0),
                       decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        border: Border.all(
-                          color: Colors.lightBlue,
-                        ),
+                        color: primary,
+                        // Colors.lightBlue,
+                        border: null, 
+                      //   Border.all(
+                      //      color: Colors.blueGrey,
+                      //  ), 
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      margin: EdgeInsets.all(1.0),
+                      padding: EdgeInsets.all(15.0),
                       child: SingleChildScrollView(
                         child: Wrap(
-                          spacing: 10,
+                          spacing: 5,
                           children: inputs.asMap().entries.map((entry) {
                             int idx = entry.key;
                             return BuildSelectedChip(
@@ -100,12 +123,21 @@ class _KeyWordState extends State<KeyWord> {
       label: Text(
         label,
         style: TextStyle(
-          color: Colors.black,
+          color: Colors.white70,
+          fontFamily: 'main'
         ),
       ),
       avatar: CircleAvatar(
-          child: Text(label[0].toUpperCase()), backgroundColor: Colors.white),
-      backgroundColor: Colors.blueGrey,
+          child: Text('#',
+            style : TextStyle(
+              fontFamily: 'main',
+              color : Colors.black),            
+          ),
+          // Text(label[0].toUpperCase()),
+           backgroundColor: primary),
+      backgroundColor: primary,
+      
+      
       selected: inputs.contains(label),
       onSelected: (bool selected) {
         setState(() {
@@ -129,12 +161,15 @@ class _KeyWordState extends State<KeyWord> {
       label: Text(
         label,
         style: TextStyle(
-          color: Colors.black,
+          color: Colors.black54,
+          fontFamily: 'main'
         ),
       ),
       avatar: CircleAvatar(
-          child: Text(label[0].toUpperCase()), backgroundColor: Colors.white),
-      backgroundColor: Colors.lightBlue,
+          child: Text('#'),
+           backgroundColor: Colors.white),
+      deleteIconColor: Colors.black54,
+      backgroundColor: Colors.white10,
       onDeleted: () {
         setState(() {
           inputs.removeWhere((value) {
@@ -149,8 +184,13 @@ class _KeyWordState extends State<KeyWord> {
     return Container(
       margin: EdgeInsets.all(5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text("내 키워드",
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+        Text("My Keywords",
+            style: TextStyle(
+              fontSize: 17,
+              // fontWeight: FontWeight.bold
+              fontFamily: 'main',
+              color : Colors.grey,
+              )),
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           // ignore: deprecated_member_use
@@ -161,7 +201,12 @@ class _KeyWordState extends State<KeyWord> {
                 inputs.clear();
               });
             },
-            child: Text("비우기"),
+            child: Text("비우기",
+              style : TextStyle(
+                color: Colors.grey,
+                fontFamily: 'main'
+              ),
+              ),
             color: Colors.white,
           ),
         ),
