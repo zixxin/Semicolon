@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ohyeahthat/data/data.dart';
-import 'package:ohyeahthat/data/model.dart';
-import 'package:ohyeahthat/widget/utils.dart';
 import 'package:get/get.dart';
-import 'package:ohyeahthat/screen/home.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 
 class DetailsScreen extends StatefulWidget {

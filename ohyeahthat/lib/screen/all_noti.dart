@@ -74,7 +74,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
         children: [
           Text(
             item.keyword,
-            style: TextStyle(fontWeight: FontWeight.w900),
+            style: const TextStyle(fontWeight: FontWeight.w900),
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
