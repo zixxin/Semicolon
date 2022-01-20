@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -10,12 +11,11 @@ class SlidableWidget extends StatefulWidget {
   final Function(SlidableAction action) onDismissed;
   final Content selected_item;
 
-
-  SlidableWidget({
+  const SlidableWidget({
     required this.child,
     required this.onDismissed,
     required this.selected_item,
-    Key ? key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -25,25 +25,25 @@ class SlidableWidget extends StatefulWidget {
 class _SlidableWidgetState extends State<SlidableWidget> {
   @override
   Widget build(BuildContext context) => Slidable(
-        actionPane: SlidableDrawerActionPane(),
+        actionPane: const SlidableDrawerActionPane(),
         child: widget.child,
 
         /// left side
         actions: <Widget>[
           IconSlideAction(
-            caption: '중요',
-            color: Colors.orange,
-            icon: Icons.star_border_outlined,
-            onTap: () {
-              setState(() {
-                widget.selected_item.imp = true;
-              });
-                if(widget.selected_item.imp == true){
+              caption: '중요',
+              color: Colors.orange,
+              icon: Icons.star_border_outlined,
+              onTap: () {
+                setState(() {
+                  widget.selected_item.imp = true;
+                });
+                if (widget.selected_item.imp == true) {
+                  // ignore_for_file: avoid_print
                   print('전체공지위젯확인 : ');
                 }
-              widget.onDismissed(SlidableAction.archive);
-            }
-          ),
+                widget.onDismissed(SlidableAction.archive);
+              }),
           // IconSlideAction(
           //   caption: 'Share',
           //   color: Colors.indigo,

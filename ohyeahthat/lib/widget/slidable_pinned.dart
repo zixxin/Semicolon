@@ -1,29 +1,31 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ohyeahthat/data/model.dart';
 
 enum SlidableAction { archive, delete }
 
-class Slidable_Imp_Widget extends StatefulWidget {
+class slidable_imp_widget extends StatefulWidget {
   final Widget child;
   final Function(SlidableAction action) onDismissed;
   final Content selected_item;
 
-  Slidable_Imp_Widget({
+  const slidable_imp_widget({
     required this.child,
     required this.onDismissed,
     required this.selected_item,
-    Key ? key,
+    Key? key,
   }) : super(key: key);
 
   @override
-  State<Slidable_Imp_Widget> createState() => _Slidable_Imp_WidgetState();
+  State<slidable_imp_widget> createState() => SlidableImpWidgetState();
 }
 
-class _Slidable_Imp_WidgetState extends State<Slidable_Imp_Widget> {
+class SlidableImpWidgetState extends State<slidable_imp_widget> {
   @override
   Widget build(BuildContext context) => Slidable(
-        actionPane: SlidableDrawerActionPane(),
+        actionPane: const SlidableDrawerActionPane(),
         child: widget.child,
 
         /// left side
@@ -37,8 +39,9 @@ class _Slidable_Imp_WidgetState extends State<Slidable_Imp_Widget> {
               setState(() {
                 widget.selected_item.imp = false;
               });
-                print('중요공지위젯확인 : ');
-                // print(widget.count);
+              // ignore_for_file: avoid_print
+              print('중요공지위젯확인 : ');
+              // print(widget.count);
             },
           ),
         ],
