@@ -7,7 +7,6 @@ import 'package:ohyeahthat/pages/keywordpage.dart';
 import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/home.dart';
 import 'binding/init_binding.dart';
-import 'package:ohyeahthat/screen/details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,32 +21,29 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1125, 2436),
       builder: () => GetMaterialApp(
-          title: 'ohyeathat',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primaryColor: Colors.blue,
-            backgroundColor: Colors.white,
+        title: 'ohyeathat',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(           
+          primaryColor: Colors.blue,
+          backgroundColor: Colors.white,
+        ),
+        home: const App(),
+        initialBinding: InitBinding(),
+        getPages: [
+          GetPage(
+            name: '/login',
+            page: () => const LoginScreen(),
           ),
-          home: const App(),
-          initialBinding: InitBinding(),
-          getPages: [
-            GetPage(
-              name: '/login',
-              page: () => const LoginScreen(),
-            ),
-            GetPage(
-              name: '/home',
-              page: () => const HomeScreen(),
-            ),
-            GetPage(
-              name: '/details',
-              page: () => const DetailsScreen(),
-            ),
-            GetPage(
-              name: '/keyword',
-              page: () => const KeyWord(),
-            )
-          ]),
+          GetPage(
+            name: '/home',
+            page: () => const HomeScreen(),
+          ),
+          GetPage(
+            name: '/keyword',
+            page: () => const KeyWord(),
+          )
+        ]
+      ),
     );
   }
 }
