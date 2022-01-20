@@ -35,7 +35,10 @@ class _PinnedScreenState extends State<PinnedScreen> {
     // }
     return Scaffold(
         appBar: AppBar(
-          title: const Text("중요공지"),
+          backgroundColor: primary,
+          title: const Text("중요공지",
+            style : TextStyle(
+              fontFamily: 'main',)),
         ),
         body: SafeArea(
             child: Center(
