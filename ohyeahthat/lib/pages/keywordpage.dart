@@ -33,27 +33,45 @@ class _KeyWordState extends State<KeyWord> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            margin: const EdgeInsets.all(3.0),
+            margin: EdgeInsets.all(3.0),
             child: Column(
               children: [
-                header(),
+                Header(),
+                Padding(
+                  padding: const EdgeInsets.only(left : 5.0),
+                  child: Row(
+                    children: [
+                      Text('Keywords',
+                      style : TextStyle(
+                        fontFamily: 'main',
+                        color : Colors.grey,
+                        fontSize: 17, 
+                      )),
+                    ]
+                  ),
+                ),
+                Divider(
+                  thickness: 0.5,
+                ),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      border: Border.all(
-                        color: Colors.blueGrey,
-                      ),
+                      color: null,
+                        // Colors.lightBlue,
+                      border: null, 
+                      //   Border.all(
+                      //     color: Colors.blueGrey,
+                      // ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: const EdgeInsets.all(3.0),
-                    padding: const EdgeInsets.all(25.0),
+                    margin: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.all(5.0),
                     child: SingleChildScrollView(
                       child: Wrap(
-                        spacing: 10,
+                        spacing: 5,
                         children: concerns.asMap().entries.map((entry) {
                           int idx = entry.key;
-                          return buildChip(
+                          return BuildChip(
                             index: idx,
                             label: entry.value['label'].toString(),
                           );
@@ -62,25 +80,30 @@ class _KeyWordState extends State<KeyWord> {
                     ),
                   ),
                 ),
-                myKeyword(),
+                MyKeyword(),
+                Divider(
+                  thickness: 0.5,
+                ),
                 if (inputs.length > 0)
                   Expanded(
                     child: Container(
-                      margin: const EdgeInsets.all(3.0),
-                      padding: const EdgeInsets.all(25.0),
                       decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        border: Border.all(
-                          color: Colors.lightBlue,
-                        ),
+                        color: primary,
+                        // Colors.lightBlue,
+                        border: null, 
+                      //   Border.all(
+                      //      color: Colors.blueGrey,
+                      //  ), 
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      margin: EdgeInsets.all(1.0),
+                      padding: EdgeInsets.all(15.0),
                       child: SingleChildScrollView(
                         child: Wrap(
-                          spacing: 10,
+                          spacing: 5,
                           children: inputs.asMap().entries.map((entry) {
                             int idx = entry.key;
-                            return buildSelectedChip(
+                            return BuildSelectedChip(
                               index: idx,
                               label: entry.value,
                             );
@@ -95,17 +118,26 @@ class _KeyWordState extends State<KeyWord> {
         ));
   }
 
-  Widget buildChip({required int index, required String label}) {
+  Widget BuildChip({required int index, required String label}) {
     return InputChip(
       label: Text(
         label,
-        style: const TextStyle(
-          color: Colors.black,
+        style: TextStyle(
+          color: Colors.white70,
+          fontFamily: 'main'
         ),
       ),
       avatar: CircleAvatar(
-          child: Text(label[0].toUpperCase()), backgroundColor: Colors.white),
-      backgroundColor: Colors.blueGrey,
+          child: Text('#',
+            style : TextStyle(
+              fontFamily: 'main',
+              color : Colors.black),            
+          ),
+          // Text(label[0].toUpperCase()),
+           backgroundColor: primary),
+      backgroundColor: primary,
+      
+      
       selected: inputs.contains(label),
       onSelected: (bool selected) {
         setState(() {
@@ -121,20 +153,23 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget buildSelectedChip({
+  Widget BuildSelectedChip({
     required int index,
     required String label,
   }) {
     return Chip(
       label: Text(
         label,
-        style: const TextStyle(
-          color: Colors.black,
+        style: TextStyle(
+          color: Colors.black54,
+          fontFamily: 'main'
         ),
       ),
       avatar: CircleAvatar(
-          child: Text(label[0].toUpperCase()), backgroundColor: Colors.white),
-      backgroundColor: Colors.lightBlue,
+          child: Text('#'),
+           backgroundColor: Colors.white),
+      deleteIconColor: Colors.black54,
+      backgroundColor: Colors.white10,
       onDeleted: () {
         setState(() {
           inputs.removeWhere((value) {
@@ -145,22 +180,33 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget myKeyword() {
+  Widget MyKeyword() {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: EdgeInsets.all(5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const Text("내 키워드",
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+        Text("My Keywords",
+            style: TextStyle(
+              fontSize: 17,
+              // fontWeight: FontWeight.bold
+              fontFamily: 'main',
+              color : Colors.grey,
+              )),
         ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
           // ignore: deprecated_member_use
           child: RaisedButton(
             onPressed: () {
-              return setState(() {
+              return 
+              setState(() {
                 inputs.clear();
               });
             },
-            child: const Text("비우기"),
+            child: Text("비우기",
+              style : TextStyle(
+                color: Colors.grey,
+                fontFamily: 'main'
+              ),
+              ),
             color: Colors.white,
           ),
         ),
@@ -168,14 +214,14 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget header() {
+  Widget Header() {
     return Container(
         child: Flexible(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Flexible(
+          Flexible(
             child: TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(), labelText: '키워드 검색'),
@@ -184,7 +230,7 @@ class _KeyWordState extends State<KeyWord> {
           Flexible(
             child: IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.search),
+              icon: Icon(Icons.search),
             ),
           )
         ],
