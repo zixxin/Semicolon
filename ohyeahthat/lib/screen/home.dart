@@ -9,6 +9,7 @@ import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:ohyeahthat/screen/settings.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 import 'package:ohyeahthat/screen/details.dart';
+//import 'package:screenshot/screenshot.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
