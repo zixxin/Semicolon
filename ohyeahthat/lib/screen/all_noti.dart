@@ -31,9 +31,6 @@ class _AllNotiScreen extends State<AllNotiScreen> {
                   padding: const EdgeInsets.only(left : 10.0, right :10.0),
                   child: SearchBar(),
                 ),
-                const Divider(
-                  thickness: 4.7,
-                ), 
                 ListView.separated(
                   primary : false,
                   shrinkWrap:true,
@@ -129,18 +126,20 @@ Widget SearchBar(){
                 color : Colors.black.withOpacity(0.5),
               ),
               // contentPadding: EdgeInsets.only(left: 20),
-              suffixIcon : const Icon(Icons.search),
+              suffixIcon : Icon(Icons.search),
               filled : true,
               enabledBorder: UnderlineInputBorder(
-                borderSide: const BorderSide(color : Colors.transparent),
+                borderSide: BorderSide(color : Colors.transparent),
                 borderRadius: BorderRadius.circular(20)),
               focusedBorder: UnderlineInputBorder(
-                borderSide: const BorderSide(color : Colors.transparent),
+                borderSide: BorderSide(color : Colors.transparent),
                 borderRadius: BorderRadius.circular(20)),
               )
             ),
+        ),
+          Divider(
+            thickness: 5,
           ),
       ],
-      
     );
   }
