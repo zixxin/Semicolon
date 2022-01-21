@@ -21,6 +21,22 @@ dependencies:
   firebase_core: ^1.11.0
   firebase_auth: ^3.3.5
 
+ #share
+  share_plus: ^3.0.4
+  share: ^2.0.4
+  path_provider: ^2.0.8
+
+
+  #screenshot
+  screenshot: ^1.2.3
+
+  #image saver
+  image_gallery_saver: '^1.7.1'
+  permission_handler: ^8.3.0
+  file: ^6.1.2
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
