@@ -12,13 +12,17 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreen extends State<SettingScreen> {
   bool _alarmOn = true;
+  // List<String> keywords = [];
+  
 
   final _username = FirebaseAuth.instance.currentUser?.displayName;
   final _useremail = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+      
         body: SafeArea(
             child: Center(
                 child: ListView(children: [
@@ -77,8 +81,10 @@ class _SettingScreen extends State<SettingScreen> {
               fontSize: 20,
             )),
         trailing: const Icon(Icons.arrow_forward_ios_rounded),
-        onTap: () {
+        onTap: (){
           Get.offNamed('/keyword');
+          // arguments:keywords);
+          // LoadKeyword();
         },
       ),
       const Divider(thickness: 1),
@@ -119,4 +125,10 @@ class _SettingScreen extends State<SettingScreen> {
       const Divider(thickness: 1),
     ]))));
   }
+
+  // Future<List<String>> LoadKeyword() async {
+  //   keywords = await Get.offNamed('/keyword');
+
+  //   return keywords;
+  // }
 }

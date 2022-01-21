@@ -11,6 +11,7 @@ class KeyWord extends StatefulWidget {
 }
 
 class _KeyWordState extends State<KeyWord> {
+  // List<String> inputs = Get.arguments;
   List<String> inputs = [];
 
   @override
@@ -26,6 +27,7 @@ class _KeyWordState extends State<KeyWord> {
             icon: const Icon(Icons.arrow_back_ios_rounded),
             onPressed: () {
               Get.offNamed('/home');
+              // Get.back(result : inputs);
             },
           ),
           backgroundColor: primary,
@@ -36,7 +38,7 @@ class _KeyWordState extends State<KeyWord> {
             margin: EdgeInsets.all(3.0),
             child: Column(
               children: [
-                Header(),
+                SearchBar(),
                 Padding(
                   padding: const EdgeInsets.only(left : 5.0),
                   child: Row(
@@ -182,7 +184,7 @@ class _KeyWordState extends State<KeyWord> {
 
   Widget MyKeyword() {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.only(left: 5,right :5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text("My Keywords",
             style: TextStyle(
@@ -238,3 +240,33 @@ class _KeyWordState extends State<KeyWord> {
     ));
   }
 }
+
+
+
+Widget SearchBar(){
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom : 3),
+        child: TextFormField(
+          // textAlign: TextAlign.center,
+          decoration : InputDecoration(
+            fillColor : Colors.grey.withOpacity(0.3),
+            hintText: '키워드 입력',
+            hintStyle: TextStyle(
+              fontFamily: 'main',
+              color : Colors.black.withOpacity(0.5),
+            ),
+            // contentPadding: EdgeInsets.only(left: 20),
+            suffixIcon : Icon(Icons.search),
+            filled : true,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color : Colors.transparent),
+              borderRadius: BorderRadius.circular(20)),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color : Colors.transparent),
+              borderRadius: BorderRadius.circular(20)),
+            )
+          ),
+      ),
+    );
+  }

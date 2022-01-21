@@ -22,23 +22,38 @@ class _AllNotiScreen extends State<AllNotiScreen> {
     return Scaffold(
         body: SafeArea(
             child: Center(
-      child: ListView.separated(
-          itemCount: item.length,
-          separatorBuilder: (context, index) {
-            return const Divider(
-              thickness: 5,
-            );
-          },
-          itemBuilder: (context, index) {
-            final items = item[index];
-            return SlidableWidget(
-              child: buildListTile(items),
-              onDismissed: (action) =>
-                  dismissSlidableItem(context, index, action),
-              selected_item: items,
-            );
-          }),
-    )));
+              child: 
+          SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left : 10.0, right :10.0),
+                  child: SearchBar(),
+                ),
+                ListView.separated(
+                  primary : false,
+                  shrinkWrap:true,
+                  itemCount: item.length,
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      thickness: 5,
+                    );
+                  }, 
+                  itemBuilder: (context, index) {
+                    final items = item[index];
+                    return SlidableWidget(
+                      child: buildListTile(items),
+                      onDismissed: (action) =>
+                          dismissSlidableItem(context, index, action),
+                      selected_item: items,
+                    );
+                }),
+              ],
+            ),
+          ),
+      )
+    ));
   }
 
   void dismissSlidableItem(BuildContext context, int index, action) {
@@ -95,3 +110,36 @@ class _AllNotiScreen extends State<AllNotiScreen> {
     );
   }
 }
+
+Widget SearchBar(){
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top :7.0),
+          child: TextFormField(
+            // textAlign: TextAlign.center,
+            decoration : InputDecoration(
+              fillColor : Colors.grey.withOpacity(0.3),
+              hintText: '공지제목 입력',
+              hintStyle: TextStyle(
+                fontFamily: 'main',
+                color : Colors.black.withOpacity(0.5),
+              ),
+              // contentPadding: EdgeInsets.only(left: 20),
+              suffixIcon : Icon(Icons.search),
+              filled : true,
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color : Colors.transparent),
+                borderRadius: BorderRadius.circular(20)),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color : Colors.transparent),
+                borderRadius: BorderRadius.circular(20)),
+              )
+            ),
+        ),
+          Divider(
+            thickness: 5,
+          ),
+      ],
+    );
+  }
