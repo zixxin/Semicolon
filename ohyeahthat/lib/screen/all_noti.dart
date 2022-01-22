@@ -30,6 +30,9 @@ class _AllNotiScreen extends State<AllNotiScreen> {
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: SearchBar(),
             ),
+            const Divider(
+              thickness: 4.7,
+            ),
             ListView.separated(
                 primary: false,
                 shrinkWrap: true,
@@ -132,9 +135,6 @@ Widget SearchBar() {
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(20)),
         )),
-      ),
-      Divider(
-        thickness: 5,
       ),
     ],
   );
