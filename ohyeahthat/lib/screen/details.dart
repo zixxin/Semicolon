@@ -63,11 +63,12 @@ class _DetailsScreen extends State<DetailsScreen> {
                     child: ListView(children: [
               Row(children: [
                 const Padding(padding: EdgeInsets.only(left: 20)),
-                Column(children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                   const SizedBox(height: 7),
                   Text(
-                    //'Title',
-                    item.title,
+                    _title(item),
                     style: const TextStyle(
                       fontFamily: 'main',
                       fontSize: 25,
@@ -76,8 +77,7 @@ class _DetailsScreen extends State<DetailsScreen> {
                   ),
                   Row(children: [
                     Text(
-                      //'Writer',
-                      item.writer,
+                      _writer(item),
                       textAlign: TextAlign.start,
                       style: const TextStyle(
                         fontFamily: 'main',
@@ -95,7 +95,6 @@ class _DetailsScreen extends State<DetailsScreen> {
                       ),
                     ),
                     const Text(
-                      //'Date',
                       'date',
                       textAlign: TextAlign.start,
                       style: TextStyle(
@@ -112,7 +111,7 @@ class _DetailsScreen extends State<DetailsScreen> {
               Row(children: [
                 const SizedBox(width: 20),
                 Chip(
-                    label: Text(item.keyword,
+                    label: Text(_keyword(item),
                         style: const TextStyle(
                           fontFamily: 'main',
                           fontSize: 13,
@@ -168,5 +167,32 @@ class _DetailsScreen extends State<DetailsScreen> {
                 : Container()),
       ),
     );
+  }
+
+  String _title(var item) {
+    if (item == null) {
+      return "";
+    }
+    else{
+      return item.title;
+    }
+  } 
+
+  String _writer(var item) {
+    if (item == null) {
+      return "";
+    }
+    else {
+      return item.writer;
+    }
+  }
+
+  String _keyword(var item) {
+    if (item == null) {
+      return "";
+    }
+    else {
+      return item.keyword;
+    }
   }
 }

@@ -4,10 +4,10 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:ohyeahthat/app.dart';
 import 'package:ohyeahthat/pages/keywordpage.dart';
+import 'package:ohyeahthat/screen/details.dart';
 import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/home.dart';
 import 'binding/init_binding.dart';
-import 'package:ohyeahthat/screen/details.dart';
 
 void main() {
   runApp(const MyApp());
