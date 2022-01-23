@@ -35,45 +35,43 @@ class _KeyWordState extends State<KeyWord> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            margin: EdgeInsets.all(3.0),
+            margin: const EdgeInsets.all(3.0),
             child: Column(
               children: [
-                SearchBar(),
+                searchBar(),
                 Padding(
-                  padding: const EdgeInsets.only(left : 5.0),
-                  child: Row(
-                    children: [
-                      Text('Keywords',
-                      style : TextStyle(
-                        fontFamily: 'main',
-                        color : Colors.grey,
-                        fontSize: 17, 
-                      )),
-                    ]
-                  ),
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Row(children: const [
+                    Text('Keywords',
+                        style: TextStyle(
+                          fontFamily: 'main',
+                          color: Colors.grey,
+                          fontSize: 17,
+                        )),
+                  ]),
                 ),
-                Divider(
+                const Divider(
                   thickness: 0.5,
                 ),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
                       color: null,
-                        // Colors.lightBlue,
-                      border: null, 
+                      // Colors.lightBlue,
+                      border: null,
                       //   Border.all(
                       //     color: Colors.blueGrey,
                       // ),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.all(1.0),
-                    padding: EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: SingleChildScrollView(
                       child: Wrap(
                         spacing: 5,
                         children: concerns.asMap().entries.map((entry) {
                           int idx = entry.key;
-                          return BuildChip(
+                          return buildChip(
                             index: idx,
                             label: entry.value['label'].toString(),
                           );
@@ -82,30 +80,31 @@ class _KeyWordState extends State<KeyWord> {
                     ),
                   ),
                 ),
-                MyKeyword(),
-                Divider(
+                myKeyword(),
+                const Divider(
                   thickness: 0.5,
                 ),
-                if (inputs.length > 0)
+                //if (inputs.length > 0)
+                if (inputs.isEmpty)
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
                         color: primary,
                         // Colors.lightBlue,
-                        border: null, 
-                      //   Border.all(
-                      //      color: Colors.blueGrey,
-                      //  ), 
+                        border: null,
+                        //   Border.all(
+                        //      color: Colors.blueGrey,
+                        //  ),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      margin: EdgeInsets.all(1.0),
-                      padding: EdgeInsets.all(15.0),
+                      margin: const EdgeInsets.all(1.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: SingleChildScrollView(
                         child: Wrap(
                           spacing: 5,
                           children: inputs.asMap().entries.map((entry) {
                             int idx = entry.key;
-                            return BuildSelectedChip(
+                            return buildSelectedChip(
                               index: idx,
                               label: entry.value,
                             );
@@ -120,26 +119,20 @@ class _KeyWordState extends State<KeyWord> {
         ));
   }
 
-  Widget BuildChip({required int index, required String label}) {
+  Widget buildChip({required int index, required String label}) {
     return InputChip(
       label: Text(
         label,
-        style: TextStyle(
-          color: Colors.white70,
-          fontFamily: 'main'
-        ),
+        style: const TextStyle(color: Colors.white70, fontFamily: 'main'),
       ),
       avatar: CircleAvatar(
-          child: Text('#',
-            style : TextStyle(
-              fontFamily: 'main',
-              color : Colors.black),            
+          child: const Text(
+            '#',
+            style: TextStyle(fontFamily: 'main', color: Colors.black),
           ),
           // Text(label[0].toUpperCase()),
-           backgroundColor: primary),
+          backgroundColor: primary),
       backgroundColor: primary,
-      
-      
       selected: inputs.contains(label),
       onSelected: (bool selected) {
         setState(() {
@@ -155,21 +148,17 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget BuildSelectedChip({
+  Widget buildSelectedChip({
     required int index,
     required String label,
   }) {
     return Chip(
       label: Text(
         label,
-        style: TextStyle(
-          color: Colors.black54,
-          fontFamily: 'main'
-        ),
+        style: const TextStyle(color: Colors.black54, fontFamily: 'main'),
       ),
-      avatar: CircleAvatar(
-          child: Text('#'),
-           backgroundColor: Colors.white),
+      avatar:
+          const CircleAvatar(child: Text('#'), backgroundColor: Colors.white),
       deleteIconColor: Colors.black54,
       backgroundColor: Colors.white10,
       onDeleted: () {
@@ -182,33 +171,30 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget MyKeyword() {
+  Widget myKeyword() {
     return Container(
-      margin: EdgeInsets.only(left: 5,right :5),
+      margin: const EdgeInsets.only(left: 5, right: 5),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text("My Keywords",
+        const Text("My Keywords",
             style: TextStyle(
               fontSize: 17,
               // fontWeight: FontWeight.bold
               fontFamily: 'main',
-              color : Colors.grey,
-              )),
+              color: Colors.grey,
+            )),
         ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           // ignore: deprecated_member_use
           child: RaisedButton(
             onPressed: () {
-              return 
-              setState(() {
+              return setState(() {
                 inputs.clear();
               });
             },
-            child: Text("비우기",
-              style : TextStyle(
-                color: Colors.grey,
-                fontFamily: 'main'
-              ),
-              ),
+            child: const Text(
+              "비우기",
+              style: TextStyle(color: Colors.grey, fontFamily: 'main'),
+            ),
             color: Colors.white,
           ),
         ),
@@ -216,14 +202,13 @@ class _KeyWordState extends State<KeyWord> {
     );
   }
 
-  Widget Header() {
-    return Container(
-        child: Flexible(
+  Widget header() {
+    return Flexible(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(
+          const Flexible(
             child: TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(), labelText: '키워드 검색'),
@@ -232,41 +217,38 @@ class _KeyWordState extends State<KeyWord> {
           Flexible(
             child: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
           )
         ],
       ),
-    ));
+    );
   }
 }
 
-
-
-Widget SearchBar(){
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom : 3),
-        child: TextFormField(
+Widget searchBar() {
+  return Flexible(
+    child: Padding(
+      padding: const EdgeInsets.only(bottom: 3),
+      child: TextFormField(
           // textAlign: TextAlign.center,
-          decoration : InputDecoration(
-            fillColor : Colors.grey.withOpacity(0.3),
-            hintText: '키워드 입력',
-            hintStyle: TextStyle(
-              fontFamily: 'main',
-              color : Colors.black.withOpacity(0.5),
-            ),
-            // contentPadding: EdgeInsets.only(left: 20),
-            suffixIcon : Icon(Icons.search),
-            filled : true,
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color : Colors.transparent),
-              borderRadius: BorderRadius.circular(20)),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color : Colors.transparent),
-              borderRadius: BorderRadius.circular(20)),
-            )
-          ),
-      ),
-    );
-  }
+          decoration: InputDecoration(
+        fillColor: Colors.grey.withOpacity(0.3),
+        hintText: '키워드 입력',
+        hintStyle: TextStyle(
+          fontFamily: 'main',
+          color: Colors.black.withOpacity(0.5),
+        ),
+        // contentPadding: EdgeInsets.only(left: 20),
+        suffixIcon: const Icon(Icons.search),
+        filled: true,
+        enabledBorder: UnderlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(20)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent),
+            borderRadius: BorderRadius.circular(20)),
+      )),
+    ),
+  );
+}

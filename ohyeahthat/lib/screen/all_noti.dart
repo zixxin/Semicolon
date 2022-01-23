@@ -28,7 +28,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              child: SearchBar(),
+              child: searchBar(),
             ),
             const Divider(
               thickness: 4.7,
@@ -111,7 +111,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
   }
 }
 
-Widget SearchBar() {
+Widget searchBar() {
   return Column(
     children: [
       Padding(
@@ -126,13 +126,13 @@ Widget SearchBar() {
             color: Colors.black.withOpacity(0.5),
           ),
           // contentPadding: EdgeInsets.only(left: 20),
-          suffixIcon: Icon(Icons.search),
+          suffixIcon: const Icon(Icons.search),
           filled: true,
           enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
+              borderSide: const BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(20)),
           focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
+              borderSide: const BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(20)),
         )),
       ),

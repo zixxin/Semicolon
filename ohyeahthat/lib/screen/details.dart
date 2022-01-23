@@ -48,7 +48,7 @@ class _DetailsScreen extends State<DetailsScreen> {
                       screenshotController
                           .capture(delay: const Duration(milliseconds: 10))
                           .then((capturedImage) async {
-                        ShowCapturedWidget(context, capturedImage!);
+                        showCapturedWidget(context, capturedImage!);
                       }).catchError((onError) {
                         print(onError);
                       });
@@ -63,9 +63,7 @@ class _DetailsScreen extends State<DetailsScreen> {
                     child: ListView(children: [
               Row(children: [
                 const Padding(padding: EdgeInsets.only(left: 20)),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const SizedBox(height: 7),
                   Text(
                     _title(item),
@@ -152,14 +150,14 @@ class _DetailsScreen extends State<DetailsScreen> {
 
     return result['filePath'];
   } */
-  Future<dynamic> ShowCapturedWidget(
+  Future<dynamic> showCapturedWidget(
       BuildContext context, Uint8List capturedImage) {
     return showDialog(
       useSafeArea: false,
       context: context,
       builder: (context) => Scaffold(
         appBar: AppBar(
-          title: Text("스샷된 사진임"),
+          title: const Text("스샷된 사진임"),
         ),
         body: Center(
             child: capturedImage != null
@@ -172,17 +170,15 @@ class _DetailsScreen extends State<DetailsScreen> {
   String _title(var item) {
     if (item == null) {
       return "";
-    }
-    else{
+    } else {
       return item.title;
     }
-  } 
+  }
 
   String _writer(var item) {
     if (item == null) {
       return "";
-    }
-    else {
+    } else {
       return item.writer;
     }
   }
@@ -190,8 +186,7 @@ class _DetailsScreen extends State<DetailsScreen> {
   String _keyword(var item) {
     if (item == null) {
       return "";
-    }
-    else {
+    } else {
       return item.keyword;
     }
   }
