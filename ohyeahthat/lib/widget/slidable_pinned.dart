@@ -6,12 +6,12 @@ import 'package:ohyeahthat/data/model.dart';
 
 enum SlidableAction { archive, delete }
 
-class slidable_imp_widget extends StatefulWidget {
+class SlidableImpWidget extends StatefulWidget {
   final Widget child;
   final Function(SlidableAction action) onDismissed;
   final Content selected_item;
 
-  const slidable_imp_widget({
+  const SlidableImpWidget({
     required this.child,
     required this.onDismissed,
     required this.selected_item,
@@ -19,10 +19,10 @@ class slidable_imp_widget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<slidable_imp_widget> createState() => SlidableImpWidgetState();
+  State<SlidableImpWidget> createState() => SlidableImpWidgetState();
 }
 
-class SlidableImpWidgetState extends State<slidable_imp_widget> {
+class SlidableImpWidgetState extends State<SlidableImpWidget> {
   @override
   Widget build(BuildContext context) => Slidable(
         actionPane: const SlidableDrawerActionPane(),

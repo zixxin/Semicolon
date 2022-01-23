@@ -15,7 +15,7 @@ class PinnedScreen extends StatefulWidget {
 class _PinnedScreenState extends State<PinnedScreen> {
   List<Content> item = List.of(Data.contents);
 
-  List<Content> make_imp_list() {
+  List<Content> makeImpList() {
     List<Content> list = [];
     for (int i = 0; i < item.length; i++) {
       if (item[i].imp == true) {
@@ -27,7 +27,7 @@ class _PinnedScreenState extends State<PinnedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Content> impList = make_imp_list();
+    List<Content> impList = makeImpList();
 
     // 출력test
     // for(int i=0; i<impList.length; i++){
@@ -37,8 +37,9 @@ class _PinnedScreenState extends State<PinnedScreen> {
         appBar: AppBar(
           backgroundColor: primary,
           title: const Text("중요공지",
-            style : TextStyle(
-              fontFamily: 'main',)),
+              style: TextStyle(
+                fontFamily: 'main',
+              )),
         ),
         body: SafeArea(
             child: Center(
@@ -51,7 +52,7 @@ class _PinnedScreenState extends State<PinnedScreen> {
               },
               itemBuilder: (context, index) {
                 final items = impList[index];
-                return slidable_imp_widget(
+                return SlidableImpWidget(
                   child: buildListTile(items),
                   onDismissed: (action) =>
                       dismissSlidableItem(context, index, action),
@@ -62,7 +63,7 @@ class _PinnedScreenState extends State<PinnedScreen> {
   }
 
   void dismissSlidableItem(BuildContext context, int index, action) {
-    List<Content> impList = make_imp_list(); //비효율적인 같은 리스트 생성.
+    List<Content> impList = makeImpList(); //비효율적인 같은 리스트 생성.
     setState(() {
       impList.removeAt(index);
     });
