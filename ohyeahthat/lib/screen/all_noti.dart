@@ -3,6 +3,7 @@ import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/data/model.dart';
 import 'package:ohyeahthat/widget/slidable_widget.dart';
 import 'package:ohyeahthat/widget/utils.dart';
+import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:get/get.dart';
 
 class AllNotiScreen extends StatefulWidget {
@@ -19,42 +20,111 @@ class _AllNotiScreen extends State<AllNotiScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size displaysize = MediaQuery.of(context).size;
+
     return Scaffold(
-        body: SafeArea(
-            child: Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              child: searchBar(),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF88A4B8),
+        elevation: 0.0,
+        bottom: PreferredSize(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // Row에서는 mainAxis가 가로, crossAxis가 세로
+            // Column에서는 crossAxis가 가로, mainAxis가 세로
+            children: [
+              Container(height: 10),
+              SizedBox(
+                width: displaysize.width * 0.9,
+                height: 40,
+                child: TextField(
+                  decoration: InputDecoration(
+                    isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFF88A4B8)),
+                        borderRadius: BorderRadius.circular(15)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFF88A4B8)),
+                        borderRadius: BorderRadius.circular(15)),
+                    fillColor: Colors.grey[200],
+                    filled: true,
+                    // border: InputBorder.none,
+                    // focusedBorder: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.grey[600],
+                      size: displaysize.width * 0.06,
+                    ), // 검색 아이콘 추가
+                    contentPadding: const EdgeInsets.only(left: 5, right: 5),
+                    hintText: '검색어 입력',
+                    hintStyle: TextStyle(
+                      fontSize: 17.0,
+                      fontFamily: 'main',
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                  ),
+                ),
+              ),
+              Container(height: 13)
+            ],
+          ),
+          preferredSize: Size(displaysize.width * 0.9, 50),
+        ),
+        title: const Text('전체 공지',
+            style: TextStyle(fontSize: 20, fontFamily: 'main')),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: IconButton(
+                  icon: const Icon(Icons.push_pin),
+                  onPressed: () {
+                    Get.to(const PinnedScreen());
+                  })),
+        ],
+      ),
+      //   title: Expanded(
+      //     child: SingleChildScrollView(
+      //   child: Column(
+      //     children: <Widget>[_logonicon()],
+      //   ),
+      // )),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  // child: searchBar(),
+                ),
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                ListView.separated(
+                    primary: false,
+                    shrinkWrap: true,
+                    itemCount: item.length,
+                    separatorBuilder: (context, index) {
+                      return const Divider(
+                        thickness: 1,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      final items = item[index];
+                      return SlidableWidget(
+                        child: buildListTile(items),
+                        onDismissed: (action) =>
+                            dismissSlidableItem(context, index, action),
+                        selected_item: items,
+                      );
+                    }),
+              ],
             ),
-            const Divider(
-              thickness: 4.7,
-            ),
-            ListView.separated(
-                primary: false,
-                shrinkWrap: true,
-                itemCount: item.length,
-                separatorBuilder: (context, index) {
-                  return const Divider(
-                    thickness: 5,
-                  );
-                },
-                itemBuilder: (context, index) {
-                  final items = item[index];
-                  return SlidableWidget(
-                    child: buildListTile(items),
-                    onDismissed: (action) =>
-                        dismissSlidableItem(context, index, action),
-                    selected_item: items,
-                  );
-                }),
-          ],
+          ),
         ),
       ),
-    )));
+    );
   }
 
   void dismissSlidableItem(BuildContext context, int index, action) {
@@ -75,33 +145,68 @@ class _AllNotiScreen extends State<AllNotiScreen> {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: 16,
+        vertical: 3,
       ),
       title: Row(
         children: [
-          Chip(
-            label: Text(item.keyword),
-            backgroundColor: Colors.blue,
-          )
+          Container(
+            margin: const EdgeInsets.only(right: 10.0, bottom: 12.0),
+            width: 65,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFF8BBA65),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.board,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 10.0, bottom: 12.0),
+            width: 72,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFFF4717F),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.keyword,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
         ],
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            item.keyword,
-            style: const TextStyle(fontWeight: FontWeight.w900),
-          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (item.title.length > 30)
-                for (int i = 0; i < 30; i++) Text(item.title[i]),
-              if (item.title.length < 30) Text(item.title),
+              Text(
+                item.title,
+                style: const TextStyle(
+                  fontFamily: 'main',
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                ),
+              ),
+              // if (item.title.length > 30)
+              //   for (int i = 0; i < 30; i++)
+              //     Text(item.title[i],
+              //         style:
+              //             const TextStyle(fontFamily: 'main', fontSize: 16.0)),
+              // if (item.title.length < 30)
+              //   Text(item.title,
+              //       style: const TextStyle(fontFamily: 'main', fontSize: 16.0)),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(item.writer),
         ],
       ),
       onTap: () {
@@ -111,31 +216,32 @@ class _AllNotiScreen extends State<AllNotiScreen> {
   }
 }
 
-Widget searchBar() {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(top: 7.0),
-        child: TextFormField(
-            // textAlign: TextAlign.center,
-            decoration: InputDecoration(
-          fillColor: Colors.grey.withOpacity(0.3),
-          hintText: '공지제목 입력',
-          hintStyle: TextStyle(
-            fontFamily: 'main',
-            color: Colors.black.withOpacity(0.5),
-          ),
-          // contentPadding: EdgeInsets.only(left: 20),
-          suffixIcon: const Icon(Icons.search),
-          filled: true,
-          enabledBorder: UnderlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(20)),
-          focusedBorder: UnderlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(20)),
-        )),
-      ),
-    ],
-  );
-}
+// Widget searchBar() {
+//   return Column(
+//     children: [
+//       Padding(
+//         padding: const EdgeInsets.only(top: 7.0),
+//         child: TextFormField(
+//             // textAlign: TextAlign.center,
+//             decoration: InputDecoration(
+//           isDense: true,
+//           fillColor: Colors.grey.withOpacity(0.3),
+//           hintText: '검색어 입력',
+//           hintStyle: TextStyle(
+//             fontFamily: 'main',
+//             color: Colors.black.withOpacity(0.5),
+//           ),
+//           contentPadding: const EdgeInsets.only(top: 13.0, left: 18.0),
+//           suffixIcon: const Icon(Icons.search, size: 25.0),
+//           filled: true,
+//           enabledBorder: UnderlineInputBorder(
+//               borderSide: const BorderSide(color: Colors.transparent),
+//               borderRadius: BorderRadius.circular(20)),
+//           focusedBorder: UnderlineInputBorder(
+//               borderSide: const BorderSide(color: Colors.transparent),
+//               borderRadius: BorderRadius.circular(20)),
+//         )),
+//       ),
+//     ],
+//   );
+// }

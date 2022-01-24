@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1125, 2436),
       builder: () => GetMaterialApp(
-          title: 'ohyeathat',
+          title: '아맞다',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.blue,

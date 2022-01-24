@@ -18,6 +18,7 @@ class _KeyWordState extends State<KeyWord> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           title: const Text('키워드관리',
               style: TextStyle(
                 fontFamily: 'main',
@@ -40,7 +41,7 @@ class _KeyWordState extends State<KeyWord> {
               children: [
                 searchBar(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(top: 15.0, left: 5.0),
                   child: Row(children: const [
                     Text('Keywords',
                         style: TextStyle(
@@ -85,7 +86,7 @@ class _KeyWordState extends State<KeyWord> {
                   thickness: 0.5,
                 ),
                 if (inputs.length > 0)
-                // if (inputs.isEmpty)
+                  // if (inputs.isEmpty)
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(

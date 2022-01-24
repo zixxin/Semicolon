@@ -27,6 +27,7 @@ class _DetailsScreen extends State<DetailsScreen> {
         controller: screenshotController,
         child: Scaffold(
             appBar: AppBar(
+              elevation: 0.0,
               title: const Text(' 공지 상세 정보',
                   style: TextStyle(
                     fontFamily: 'main',
@@ -40,7 +41,7 @@ class _DetailsScreen extends State<DetailsScreen> {
               ),
               actions: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 12.0),
                   child: IconButton(
                     icon: const Icon(Icons.share),
                     tooltip: 'share',
@@ -65,65 +66,27 @@ class _DetailsScreen extends State<DetailsScreen> {
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const SizedBox(height: 7),
-                  Text(
-                    _title(item),
-                    style: const TextStyle(
-                      fontFamily: 'main',
-                      fontSize: 25,
-                      color: Color(0xFF2E2E2E),
-                    ),
-                  ),
-                  Row(children: [
-                    Text(
-                      _writer(item),
-                      textAlign: TextAlign.start,
+                  Container(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+                    child: Text(
+                      _title(item),
                       style: const TextStyle(
                         fontFamily: 'main',
-                        fontSize: 12,
-                        color: Color(0xFFA9A9A9),
+                        fontSize: 18,
+                        color: Color(0xFF2E2E2E),
                       ),
                     ),
-                    const Text(
-                      ' | ',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontFamily: 'main',
-                        fontSize: 12,
-                        color: Color(0xFFA9A9A9),
-                      ),
-                    ),
-                    const Text(
-                      'date',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontFamily: 'main',
-                        fontSize: 12,
-                        color: Color(0xFFA9A9A9),
-                      ),
-                    )
-                  ]),
+                  ),
                 ])
               ]),
-              const SizedBox(height: 20),
-              const Divider(thickness: 1),
-              Row(children: [
-                const SizedBox(width: 20),
-                Chip(
-                    label: Text(_keyword(item),
-                        style: const TextStyle(
-                          fontFamily: 'main',
-                          fontSize: 13,
-                          color: Color(0xFFA9A9A9),
-                        ))),
-              ]),
+              Row(children: [_detailsLine(item)]),
               const Divider(thickness: 1),
               Container(
                 padding: const EdgeInsets.all(20),
-                child: const Text(
-                    "Due to restrictions set up by Facebook this plugin isn't capable of sharing data reliably to Facebook related apps on Android and iOS. This includes eg. sharing text to the Facebook Messenger. If you require this functionality please check the native Facebook Sharing SDK (https://developers.facebook.com/docs/sharing) or search for other Flutter plugins implementing this SDK. More information can be found in this issue.",
-                    style: TextStyle(
+                child: Text(_content(item),
+                    style: const TextStyle(
                       fontFamily: 'main',
-                      fontSize: 13,
+                      fontSize: 15,
                     )),
               ),
             ])))),
@@ -175,19 +138,68 @@ class _DetailsScreen extends State<DetailsScreen> {
     }
   }
 
-  String _writer(var item) {
+  String _content(var item) {
     if (item == null) {
       return "";
     } else {
-      return item.writer;
+      return item.content;
     }
   }
+}
 
-  String _keyword(var item) {
-    if (item == null) {
-      return "";
-    } else {
-      return item.keyword;
-    }
-  }
+Widget _detailsLine(var item) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start, // 위젯 사이 공간 동일하게 만들기
+    children: <Widget>[
+      Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // Row에서는 mainAxis가 가로, crossAxis가 세로
+        // Column에서는 crossAxis가 가로, mainAxis가 세로
+        children: [
+          Container(
+            margin:
+                const EdgeInsets.only(left: 18.0, right: 10.0, bottom: 10.0),
+            width: 65,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFF8BBA65),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.board,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
+        ],
+      ),
+      Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // Row에서는 mainAxis가 가로, crossAxis가 세로
+        // Column에서는 crossAxis가 가로, mainAxis가 세로
+        children: [
+          Container(
+            margin: const EdgeInsets.only(right: 10.0, bottom: 10.0),
+            width: 72,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFFF4717F),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.keyword,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
+        ],
+      ),
+    ],
+  );
 }

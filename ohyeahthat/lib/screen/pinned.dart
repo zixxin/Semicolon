@@ -4,6 +4,7 @@ import 'package:ohyeahthat/data/model.dart';
 import 'package:ohyeahthat/theme/colors.dart';
 import 'package:ohyeahthat/widget/slidable_pinned.dart';
 import 'package:ohyeahthat/widget/utils.dart';
+import 'package:get/get.dart';
 
 class PinnedScreen extends StatefulWidget {
   const PinnedScreen({Key? key}) : super(key: key);
@@ -35,6 +36,7 @@ class _PinnedScreenState extends State<PinnedScreen> {
     // }
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           backgroundColor: primary,
           title: const Text("중요공지",
               style: TextStyle(
@@ -43,22 +45,25 @@ class _PinnedScreenState extends State<PinnedScreen> {
         ),
         body: SafeArea(
             child: Center(
-          child: ListView.separated(
-              itemCount: impList.length,
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  thickness: 5,
-                );
-              },
-              itemBuilder: (context, index) {
-                final items = impList[index];
-                return SlidableImpWidget(
-                  child: buildListTile(items),
-                  onDismissed: (action) =>
-                      dismissSlidableItem(context, index, action),
-                  selected_item: items,
-                );
-              }),
+          child: Container(
+            margin: const EdgeInsets.only(top: 10.0),
+            child: ListView.separated(
+                itemCount: impList.length,
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    thickness: 1,
+                  );
+                },
+                itemBuilder: (context, index) {
+                  final items = impList[index];
+                  return SlidableImpWidget(
+                    child: buildListTile(items),
+                    onDismissed: (action) =>
+                        dismissSlidableItem(context, index, action),
+                    selected_item: items,
+                  );
+                }),
+          ),
         )));
   }
 
@@ -81,36 +86,108 @@ class _PinnedScreenState extends State<PinnedScreen> {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: 16,
+        vertical: 3,
       ),
       title: Row(
         children: [
-          Chip(
-            label: Text(item.keyword),
-            backgroundColor: Colors.blue,
-          )
+          Container(
+            margin: const EdgeInsets.only(right: 10.0, bottom: 12.0),
+            width: 65,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFF8BBA65),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.board,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 10.0, bottom: 12.0),
+            width: 72,
+            height: 27,
+            decoration: BoxDecoration(
+                color: const Color(0xFFF4717F),
+                borderRadius: BorderRadius.circular(20) //모서리를 둥글게
+                ),
+            child: Container(
+              margin: const EdgeInsets.only(top: 5.0),
+              child: Text(item.keyword,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: 'main', color: Colors.white, fontSize: 14.0)),
+            ),
+          ),
         ],
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            item.keyword,
-            style: const TextStyle(fontWeight: FontWeight.w900),
-          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (item.title.length > 30)
-                for (int i = 0; i < 30; i++) Text(item.title[i]),
-              if (item.title.length < 30) Text(item.title),
+              Text(
+                item.title,
+                style: const TextStyle(
+                  fontFamily: 'main',
+                  fontSize: 16,
+                  color: Color(0xFF2E2E2E),
+                ),
+              ),
+              // if (item.title.length > 30)
+              //   for (int i = 0; i < 30; i++)
+              //     Text(item.title[i],
+              //         style:
+              //             const TextStyle(fontFamily: 'main', fontSize: 16.0)),
+              // if (item.title.length < 30)
+              //   Text(item.title,
+              //       style: const TextStyle(fontFamily: 'main', fontSize: 16.0)),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(item.writer),
         ],
       ),
-      onTap: () {},
+      onTap: () {
+        Get.offNamed('/details', arguments: item);
+      },
     );
   }
+
+  // Widget buildListTile(Content item) {
+  //   return ListTile(
+  //     contentPadding: const EdgeInsets.symmetric(
+  //       horizontal: 16,
+  //       vertical: 16,
+  //     ),
+  //     title: Row(
+  //       children: [
+  //         Chip(
+  //           label: Text(item.keyword),
+  //           backgroundColor: Colors.blue,
+  //         )
+  //       ],
+  //     ),
+  //     subtitle: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           item.keyword,
+  //           style: const TextStyle(fontWeight: FontWeight.w900),
+  //         ),
+  //         Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             if (item.title.length > 30)
+  //               for (int i = 0; i < 30; i++) Text(item.title[i]),
+  //             if (item.title.length < 30) Text(item.title),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //     onTap: () {},
+  //   );
+  // }
 }

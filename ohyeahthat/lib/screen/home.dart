@@ -5,9 +5,9 @@ import 'package:ohyeahthat/controller/home_controller.dart';
 import 'package:ohyeahthat/screen/all_noti.dart';
 import 'package:ohyeahthat/screen/login.dart';
 import 'package:ohyeahthat/screen/login_error.dart';
-import 'package:ohyeahthat/screen/pinned.dart';
+// import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:ohyeahthat/screen/settings.dart';
-import 'package:ohyeahthat/theme/colors.dart';
+// import 'package:ohyeahthat/theme/colors.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,23 +29,24 @@ class HomeScreen extends GetView<HomeController> {
               return const LoginErrorScreen();
             } else {
               return Obx(() => Scaffold(
-                  appBar: AppBar(
-                    title: Text(
-                      _appBarTitle(controller.currentIndex.value),
-                      style: const TextStyle(
-                        fontFamily: 'main',
-                        fontSize: 20,
-                      ),
-                    ),
-                    actions: <Widget>[
-                      IconButton(
-                          icon: const Icon(Icons.push_pin),
-                          onPressed: () {
-                            Get.to(const PinnedScreen());
-                          })
-                    ],
-                    backgroundColor: primary,
-                  ),
+                  // appBar: AppBar(
+                  //   elevation: 0.0,
+                  //   title: Text(
+                  //     _appBarTitle(controller.currentIndex.value),
+                  //     style: const TextStyle(
+                  //       fontFamily: 'main',
+                  //       fontSize: 20,
+                  //     ),
+                  //   ),
+                  //   actions: <Widget>[
+                  //     IconButton(
+                  //         icon: const Icon(Icons.push_pin),
+                  //         onPressed: () {
+                  //           Get.to(const PinnedScreen());
+                  //         })
+                  //   ],
+                  //   backgroundColor: primary,
+                  // ),
                   body: IndexedStack(
                       index: controller.currentIndex.value,
                       children: const [
@@ -60,23 +61,24 @@ class HomeScreen extends GetView<HomeController> {
                           onTap: controller.changePageIndex,
                           items: const [
                             BottomNavigationBarItem(
-                              icon: Icon(Icons.list_outlined),
-                              label: "전체 공지",
-                            ),
+                                icon: Icon(Icons.list_outlined),
+                                title: Text('전체 공지',
+                                    style: TextStyle(fontFamily: 'main'))),
                             BottomNavigationBarItem(
                                 icon: Icon(Icons.settings_outlined),
-                                label: "설정"),
+                                title: Text('설정',
+                                    style: TextStyle(fontFamily: 'main'))),
                           ]))));
             }
           }
         });
   }
 
-  String _appBarTitle(int index) {
-    if (index == 0) {
-      return "전체 공지";
-    } else {
-      return "설정";
-    }
-  }
+  // String _appBarTitle(int index) {
+  //   if (index == 0) {
+  //     return "전체 공지";
+  //   } else {
+  //     return "설정";
+  //   }
+  // }
 }
