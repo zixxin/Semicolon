@@ -84,8 +84,8 @@ class _KeyWordState extends State<KeyWord> {
                 const Divider(
                   thickness: 0.5,
                 ),
-                //if (inputs.length > 0)
-                if (inputs.isEmpty)
+                if (inputs.length > 0)
+                // if (inputs.isEmpty)
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
