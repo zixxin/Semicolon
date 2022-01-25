@@ -124,10 +124,15 @@ class _AllNotiScreen extends State<AllNotiScreen> {
                   onPressed: () {
                     Get.to(const PinnedScreen());
                   }),
-              const IconButton(
-                icon: Icon(Icons.alarm),
-                onPressed: createPlantFoodNotification,
-              )
+              const Padding(
+                  padding: EdgeInsets.only(right: 12.0),
+                  child: IconButton(
+                      icon: Icon(Icons.alarm),
+                      onPressed: createPlantFoodNotification)),
+              // const IconButton(
+              //   icon: Icon(Icons.alarm),
+              //   onPressed: createPlantFoodNotification,
+              // )
             ],
           ),
         ],
