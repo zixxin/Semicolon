@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ohyeahthat/theme/colors.dart';
@@ -123,6 +125,7 @@ class _DetailsScreen extends State<DetailsScreen> {
           title: const Text("스샷된 사진임"),
         ),
         body: Center(
+            // ignore: unnecessary_null_comparison
             child: capturedImage != null
                 ? Image.memory(capturedImage)
                 : Container()),
