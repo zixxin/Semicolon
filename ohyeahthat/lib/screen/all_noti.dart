@@ -117,20 +117,18 @@ class _AllNotiScreen extends State<AllNotiScreen> {
         title: const Text('전체 공지',
             style: TextStyle(fontSize: 20, fontFamily: 'main')),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: IconButton(
-                icon: const Icon(Icons.push_pin),
-                onPressed: () {
-                  Get.to(const PinnedScreen());
-                }),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: IconButton(
-              icon: Icon(Icons.alarm),
-              onPressed: createPlantFoodNotification,
-            ),
+          Row(
+            children: <Widget>[
+              IconButton(
+                  icon: const Icon(Icons.push_pin),
+                  onPressed: () {
+                    Get.to(const PinnedScreen());
+                  }),
+              const IconButton(
+                icon: Icon(Icons.alarm),
+                onPressed: createPlantFoodNotification,
+              )
+            ],
           ),
         ],
       ),

@@ -85,8 +85,8 @@ class _KeyWordState extends State<KeyWord> {
                 const Divider(
                   thickness: 0.5,
                 ),
-                if (inputs.length >
-                    0) //if (inputs.isNotEmpty)으로 바꾸면 좋은데 일단 불확실해서 주석처리함
+                if (inputs.length > 0)
+                  //if (inputs.isNotEmpty)으로 바꾸면 좋은데 일단 불확실해서 주석처리함
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
