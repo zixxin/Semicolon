@@ -6,8 +6,8 @@ Future<void> createPlantFoodNotification() async {
     content: NotificationContent(
       id: createUniqueId(),
       channelKey: 'basic_channel',
-      title: '${Emojis.emotion_red_heart} Buy Plant Food',
-      body: 'Florist has 2 in stock',
+      title: '${Emojis.emotion_red_heart} 새로운 공지가 올라왔습니다!',
+      body: '내용이 들어가야하는 부분',
       notificationLayout: NotificationLayout.BigText,
     ),
   );

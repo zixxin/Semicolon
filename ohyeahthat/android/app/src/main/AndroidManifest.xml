@@ -36,7 +36,6 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize"
-            
             android:showWhenLocked="true" 
             android:turnScreenOn="true"> <!--잠겨 있을 때도 활성화될 수 있도록 설정-->
 
