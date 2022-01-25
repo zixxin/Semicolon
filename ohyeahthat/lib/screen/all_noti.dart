@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ohyeahthat/data/data.dart';
 import 'package:ohyeahthat/data/model.dart';
+import 'package:ohyeahthat/screen/notification.dart';
 import 'package:ohyeahthat/widget/slidable_widget.dart';
 import 'package:ohyeahthat/widget/utils.dart';
 import 'package:ohyeahthat/screen/pinned.dart';
 import 'package:get/get.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class AllNotiScreen extends StatefulWidget {
   const AllNotiScreen({
@@ -17,6 +19,48 @@ class AllNotiScreen extends StatefulWidget {
 
 class _AllNotiScreen extends State<AllNotiScreen> {
   List<Content> item = List.of(Data.contents);
+
+  @override
+  void initState() {
+    super.initState();
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Allow Notifications'),
+            content: const Text('Our app would like to send you notifications'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.offNamed('/details', arguments: item);
+                },
+                child: const Text(
+                  'No thanks',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              TextButton(
+                  onPressed: () => AwesomeNotifications()
+                      .requestPermissionToSendNotifications()
+                      .then((_) => Navigator.pop(context)),
+                  child: const Text(
+                    'Allow',
+                    style: TextStyle(
+                      color: Colors.teal,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ))
+            ],
+          ),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +118,20 @@ class _AllNotiScreen extends State<AllNotiScreen> {
             style: TextStyle(fontSize: 20, fontFamily: 'main')),
         actions: <Widget>[
           Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: IconButton(
-                  icon: const Icon(Icons.push_pin),
-                  onPressed: () {
-                    Get.to(const PinnedScreen());
-                  })),
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+                icon: const Icon(Icons.push_pin),
+                onPressed: () {
+                  Get.to(const PinnedScreen());
+                }),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 12.0),
+            child: IconButton(
+              icon: Icon(Icons.alarm),
+              onPressed: createPlantFoodNotification,
+            ),
+          ),
         ],
       ),
       //   title: Expanded(
