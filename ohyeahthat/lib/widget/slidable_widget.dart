@@ -43,7 +43,7 @@ class _SlidableWidgetState extends State<SlidableWidget> {
                   widget.onDismissed(SlidableAction.archive);//수정
                 }//수정
                 else{//수정
-                  widget.selected_item.imp = false;//수정
+                  // widget.selected_item.imp = false;//수정
                   widget.onDismissed(SlidableAction.already);//수정
                 }//수정
               }),
