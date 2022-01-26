@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ohyeahthat/data/model.dart';
 
-enum SlidableAction { archive, share, more, delete }
+enum SlidableAction { archive, share, already, delete }
 
 class SlidableWidget extends StatefulWidget {
   final Widget child;
@@ -35,14 +35,17 @@ class _SlidableWidgetState extends State<SlidableWidget> {
               color: Colors.orange,
               icon: Icons.star_border_outlined,
               onTap: () {
-                setState(() {
-                  widget.selected_item.imp = true;
-                });
-                if (widget.selected_item.imp == true) {
-                  // ignore_for_file: avoid_print
-                  print('전체공지위젯확인 : ');
-                }
-                widget.onDismissed(SlidableAction.archive);
+                if(widget.selected_item.imp == false){//수정
+                  setState(() {//수정
+                  widget.selected_item.imp = true;//수정
+                  }//수정
+                );//수정
+                  widget.onDismissed(SlidableAction.archive);//수정
+                }//수정
+                else{//수정
+                  widget.selected_item.imp = false;//수정
+                  widget.onDismissed(SlidableAction.already);//수정
+                }//수정
               }),
           // IconSlideAction(
           //   caption: 'Share',

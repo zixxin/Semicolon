@@ -187,6 +187,9 @@ class _AllNotiScreen extends State<AllNotiScreen> {
       case SlidableAction.archive:
         Utils.showSnackBar(context, '중요공지에 저장되었습니다.');
         break;
+      case SlidableAction.already://추가
+        Utils.showSnackBar(context, '중요 해제되었습니다.');//추가
+        break;//추가
       case SlidableAction.delete:
         setState(() {
           item.removeAt(index);
