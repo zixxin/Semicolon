@@ -1,16 +1,7 @@
-# ohyeahthat
+# 아맞다; Hisnet 공지 알림이  
 
-A new Flutter project.
+Semicolon팀 동계 방학 프로젝트 (2021.09-2022.01)  
+- 윤지인(총괄 팀장), 윤소예(Flutter팀장), 박건우, 김나임, 송다빈  
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 프로젝트 소개  
+한동대학교 학생들이 학교생활에 있어 필요한 공지를 확인하기 위해 사용하는 히즈넷(Hisnet)은 보기 어려운 UI와 쌓여있는 공지로 인해 많은 학생들이 사용에 있어 어려움을 겪고 있다. 이에 "아맞다; Hisnet 공지 알림이"는 사용자가 어플 내에서 원하는 키워드를 선택하면 해당 키워드를 포함하는 공지의 업로드에 대한 정보를 사용자의 폰으로 실시간 푸쉬 알림을 보내주는 기능을 포함하고 있으며, 이를 통하여 기존의 히즈넷 공지를 확인하는 데에 있었던 어려움을 해소하고자 한다. 어플 내에서 공지의 세부 정보 또한 확인해볼 수 있다.
