@@ -4,6 +4,7 @@ import 'package:ohyeahthat/data/model.dart';
 final concerns = [
   {'label': '일반공지', 'color': Colors.teal},
   {'label': '수강신청', 'color': Colors.teal},
+  {'label': '교내공지', 'color': Colors.teal},
   {'label': '장학금', 'color': Colors.teal},
   {'label': '공채', 'color': Colors.teal},
   {'label': '시간표', 'color': Colors.teal},
