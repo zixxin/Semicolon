@@ -46,7 +46,7 @@ class _DetailsScreen extends State<DetailsScreen> {
                   padding: const EdgeInsets.only(right: 12.0),
                   child: IconButton(
                     icon: const Icon(Icons.share),
-                    tooltip: 'share',
+                    tooltip: ('share'),
                     onPressed: () {
                       screenshotController
                           .capture(delay: const Duration(milliseconds: 10))
@@ -57,7 +57,7 @@ class _DetailsScreen extends State<DetailsScreen> {
                       });
                     },
                   ),
-                )
+                ),
               ],
               backgroundColor: primary,
             ),
@@ -122,7 +122,13 @@ class _DetailsScreen extends State<DetailsScreen> {
       context: context,
       builder: (context) => Scaffold(
         appBar: AppBar(
-          title: const Text("스샷된 사진임"),
+          title: const Text("스크린 샷 화면",
+            style: TextStyle(
+                      fontFamily: 'main',
+                      fontSize: 20,
+                    )
+                  ),
+          backgroundColor: primary,
         ),
         body: Center(
             // ignore: unnecessary_null_comparison

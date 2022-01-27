@@ -65,6 +65,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
   @override
   Widget build(BuildContext context) {
     final Size displaysize = MediaQuery.of(context).size;
+    final myController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -82,6 +83,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
                 width: displaysize.width * 0.9,
                 height: 40,
                 child: TextField(
+                  controller: myController,
                   decoration: InputDecoration(
                     isDense: true,
                     focusedBorder: OutlineInputBorder(
@@ -109,7 +111,7 @@ class _AllNotiScreen extends State<AllNotiScreen> {
                   ),
                 ),
               ),
-              Container(height: 13)
+              Container(height: 13),
             ],
           ),
           preferredSize: Size(displaysize.width * 0.9, 50),

@@ -12,7 +12,7 @@ class KeyWord extends StatefulWidget {
 
 class _KeyWordState extends State<KeyWord> {
   // List<String> inputs = Get.arguments;
-  List<String> inputs = [];
+  List<String> inputs = ['수강신청', '시간표', '장학금', '공채', '전전', '일반공지', '교내공지'];
 
   @override
   Widget build(BuildContext context) {

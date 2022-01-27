@@ -1,7 +1,15 @@
+// ignore_for_file: avoid_print
+
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ohyeahthat/theme/colors.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:ohyeahthat/widget/utils.dart';
+
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -11,7 +19,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreen extends State<SettingScreen> {
-  bool _alarmOn = true;
   // List<String> keywords = [];
 
   final _username = FirebaseAuth.instance.currentUser?.displayName;
@@ -21,7 +28,7 @@ class _SettingScreen extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF88A4B8),
+          backgroundColor: primary,
           elevation: 0.0,
           title: const Text('설정',
               style: TextStyle(fontSize: 20, fontFamily: 'main')),
@@ -97,20 +104,15 @@ class _SettingScreen extends State<SettingScreen> {
           const Divider(thickness: 1),
           Container(
               margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-              child: ListTile(
-                  title: const Text('알림',
+              child: const ListTile(
+                  title: Text('알림',
                       style: TextStyle(
                         fontFamily: 'main',
                         fontSize: 20,
                       )),
-                  trailing: CupertinoSwitch(
-                      activeColor: const Color(0xFF88A4B8),
-                      value: _alarmOn,
-                      onChanged: (bool value) {
-                        setState(() {
-                          _alarmOn = value;
-                        });
-                      }))),
+                  trailing: SwitchWidget()
+                      )
+                      ),
           const Divider(thickness: 1),
           // Container(
           //   padding: const EdgeInsets.only(left: 18.0, top: 20.0),
@@ -142,4 +144,46 @@ class _SettingScreen extends State<SettingScreen> {
 
   //   return keywords;
   // }
+}
+class SwitchWidget extends StatefulWidget {
+  const SwitchWidget({Key? key}) : super(key: key);
+
+  @override
+  SwitchWidgetClass createState() => SwitchWidgetClass();
+}
+
+class SwitchWidgetClass extends State {
+  bool switchControl = false;
+
+  void toggleSwitch(bool value) {
+    if (switchControl == false) {
+      setState(() {
+        switchControl = true;
+        
+      });
+      // Put your code here which you want to execute on Switch ON event.
+      // AwesomeNotifications().removeChannel(CHANNEL_METHOD_ACTION_RECEIVED);
+    } else {
+      setState(() {
+        switchControl = false;
+      });
+      // Put your code here which you want to execute on Switch OFF event.
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Transform.scale(
+        scale: 1.5,
+        child: Switch(
+          onChanged: toggleSwitch,
+          value: switchControl,
+          activeColor: Colors.white,
+          activeTrackColor: primary,
+          inactiveThumbColor: Colors.white,
+          inactiveTrackColor: Colors.grey,
+        )),
+    ]);
+  }
 }
